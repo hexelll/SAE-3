@@ -12,7 +12,7 @@ CREATE TABLE Materiel (
     typeMateriel VARCHAR(50),
     stockTotal INT NOT NULL DEFAULT 0,
     stockDisponible INT NOT NULL DEFAULT 0,
-    Empruntable BOOLEAN NOT NULL DEFAULT TRUE
+    empruntable BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE Fabriquer (
