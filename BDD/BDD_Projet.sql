@@ -45,6 +45,7 @@ CREATE TABLE Emprunt (
 CREATE TABLE Emprunter (
     idEmprunt INT,
     idMateriel INT,
+    quantité INT,
     PRIMARY KEY (idEmprunt, idMateriel),
     FOREIGN KEY (idEmprunt) REFERENCES Emprunt(idEmprunt),
     FOREIGN KEY (idMateriel) REFERENCES Materiel(idMateriel)
