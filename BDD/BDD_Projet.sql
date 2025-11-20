@@ -18,13 +18,13 @@ CREATE TABLE Materiel (
 CREATE TABLE Fabriquer (
     idFabriqué INT,
     idComposant INT,
+    quantité INT,
     PRIMARY KEY (idFabriqué,idComposant),
     FOREIGN KEY (idFabriqué) REFERENCES Materiel(idMateriel),
     FOREIGN KEY (idComposant) REFERENCES Materiel(idMateriel)
 );
 
 CREATE TABLE Admin (
-
     idAdmin INT AUTO_INCREMENT PRIMARY KEY,
     emailAdmin VARCHAR(100) NOT NULL UNIQUE,
     hashAdmin VARCHAR(255) NOT NULL
