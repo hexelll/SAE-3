@@ -2,8 +2,8 @@
 
 
 
-CREATE DATABASE BDD_Projet;
-USE BDD_Projet;
+CREATE DATABASE bdfablab;
+USE bdfablab;
 
 CREATE TABLE Materiel (
     idMateriel INT AUTO_INCREMENT PRIMARY KEY,
