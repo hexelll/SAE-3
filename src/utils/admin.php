@@ -10,7 +10,7 @@
             $this->hashMdp = $hashMdp;
         }
         public static function fromTuple($tuple) {
-            return new Admin($tuple["id_admin"],$tuple["email_admin"],$tuple["hash_admin"]);
+            return new Admin($tuple["idAdmin"],$tuple["emailAdmin"],$tuple["hashAdmin"]);
         }
         public static function fromTuples($tuples) {
             $admins = array();
@@ -26,14 +26,14 @@
             $this->connexion = Connexion::getConnexion();
         }
         public function findById($id) {
-            $prepared = $this->connexion->prepare("select * from Admin where id_admin = :id");
+            $prepared = $this->connexion->prepare("select * from Admin where idAdmin = :id");
             $prepared->bindValue(":id",$id,PDO::PARAM_INT);
             $prepared->execute();
             $tuple = $prepared->fetch(PDO::FETCH_ASSOC);
             return Admin::fromTuple($tuple);
         }
         public function findByEmail($email) {
-            $prepared = $this->connexion->prepare("select * from Admin where email_admin = :email");
+            $prepared = $this->connexion->prepare("select * from Admin where emailAdmin = :email");
             $prepared->bindValue(":email",$email,PDO::PARAM_STR);
             $prepared->execute();
             $tuple = $prepared->fetch(PDO::FETCH_ASSOC);
