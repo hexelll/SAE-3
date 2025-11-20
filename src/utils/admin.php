@@ -19,6 +19,9 @@
             }
             return $admins;
         }
+        public static function hashMdp($mdp) {
+            return hash('sha256', $mdp);
+        }
     }
     class AdminDAO {
         private $connexion = null;
