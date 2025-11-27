@@ -3,7 +3,6 @@
         public $id;
         public $email;
         public $hashMdp;
-        public $demandesAValider = null;
         public function __construct($id,$email,$hashMdp) {
             $this->id = $id;
             $this->email = $email;
@@ -46,6 +45,18 @@
             $prepared = $this->connexion->prepare("select * from Admin");
             $tuples = $prepared->fetchAll();
             return Admin::fromTuples($tuples);
+        }
+        public function update($admin) {
+            $prepared = $this->connexion->prepare(
+                "update Admin set ".
+                "emailAdmin=:emailAdmin,".
+                "hashAdmin=:hashAdmin".
+                "where idAdmin=:idAdmin"
+            );
+            $prepared->bindValue(":idAdmin",$admin->id);
+            $prepared->bindValue(":emailAdmin",$admin->email);
+            $prepared->bindValue(":hashAdmin",$admin->hashMdp);
+            $prepared->execute();
         }
     }
 ?>
