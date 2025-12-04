@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Tableau de bord</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← Retour</a>
+            <h1>Tableau de bord Administrateur</h1>
+            <p>Gérer les demandes de réservation et consulter le matériel</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('reservations')">Demandes de réservation</button>
+            <button class="tab-btn" onclick="showTab('materials')">Matériel disponible</button>
+        </div>
+
+        <!-- Onglet Réservations -->
+        <div id="reservations-tab" class="tab-content active">
+            <h2>Demandes en attente</h2>
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Matériel</th>
+                            <th>Quantité</th>
+                            <th>Date début</th>
+                            <th>Date fin</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Les données seront chargées depuis votre base de données PHP -->
+                        <!-- Exemple de structure : -->
+                        <tr>
+                            <td>#001</td>
+                            <td>jean.dupont@email.com</td>
+                            <td>Arduino Uno</td>
+                            <td>2</td>
+                            <td>2025-11-25</td>
+                            <td>2025-11-30</td>
+                            <td><span class="badge badge-warning">En attente</span></td>
+                            <td class="action-buttons">
+                                <form action="validate_reservation.php" method="POST" style="display: inline;">
+                                    <input type="hidden" name="reservation_id" value="1">
+                                    <input type="hidden" name="action" value="approve">
+                                    <button type="submit" class="btn btn-success">Valider</button>
+                                </form>
+                                <form action="validate_reservation.php" method="POST" style="display: inline;">
+                                    <input type="hidden" name="reservation_id" value="1">
+                                    <input type="hidden" name="action" value="reject">
+                                    <button type="submit" class="btn btn-danger">Refuser</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#002</td>
+                            <td>marie.martin@email.com</td>
+                            <td>Raspberry Pi 4</td>
+                            <td>1</td>
+                            <td>2025-11-22</td>
+                            <td>2025-11-28</td>
+                            <td><span class="badge badge-warning">En attente</span></td>
+                            <td class="action-buttons">
+                                <form action="validate_reservation.php" method="POST" style="display: inline;">
+                                    <input type="hidden" name="reservation_id" value="2">
+                                    <input type="hidden" name="action" value="approve">
+                                    <button type="submit" class="btn btn-success">Valider</button>
+                                </form>
+                                <form action="validate_reservation.php" method="POST" style="display: inline;">
+                                    <input type="hidden" name="reservation_id" value="2">
+                                    <input type="hidden" name="action" value="reject">
+                                    <button type="submit" class="btn btn-danger">Refuser</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Onglet Matériel -->
+        <div id="materials-tab" class="tab-content">
+            <h2>Inventaire du matériel</h2>
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Catégorie</th>
+                            <th>Quantité totale</th>
+                            <th>Disponible</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Les données seront chargées depuis votre base de données PHP -->
+                        <!-- Exemple de structure : -->
+                        <tr>
+                            <td>1</td>
+                            <td>Arduino Uno</td>
+                            <td>Microcontrôleurs</td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td><span class="badge badge-success">Disponible</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Raspberry Pi 4</td>
+                            <td>Microcontrôleurs</td>
+                            <td>5</td>
+                            <td>3</td>
+                            <td><span class="badge badge-success">Disponible</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Oscilloscope</td>
+                            <td>Instruments de mesure</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td><span class="badge badge-danger">Indisponible</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Imprimante 3D</td>
+                            <td>Fabrication</td>
+                            <td>3</td>
+                            <td>2</td>
+                            <td><span class="badge badge-success">Disponible</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Fer à souder</td>
+                            <td>Outils</td>
+                            <td>15</td>
+                            <td>12</td>
+                            <td><span class="badge badge-success">Disponible</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
