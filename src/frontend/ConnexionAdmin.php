@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'gestionConnexion.php';
-require_once 'admin.php';
+require_once '../utils/gestionConnexion.php';
+require_once '../utils/admin.php';
 
 $message = "";
 
