@@ -4,7 +4,7 @@
         private static $laConnexion;
         private  function __construct() {
             try {
-                self::$laConnexion= new PDO('mysql:host=localhost;dbname=bdfablab','adminer','Isanum64!');
+                self::$laConnexion= new PDO('mysql:host=10.3.17.219:3036;dbname=bdfablab','adminer','Isanum64!');
             }catch(PDOException $erreur){
                 echo "erreur de connexion : ".$erreur->getMessage();
                 die();
