@@ -13,9 +13,6 @@ if (!empty($email) && !empty($mdp)) {
         $adminDAO = new AdminDAO();
         $admin = $adminDAO->findByEmail($email);
         $hashSaisi = Admin::hashMdp($mdp);
-        echo $hashSaisi . "<br>";
-        echo Admin::hashMdp("jeveuxaboire") . "<br>";
-        echo $admin->hashMdp;
         if ($admin && $admin->hashMdp === $hashSaisi) {
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_id'] = $admin->id;
@@ -41,7 +38,7 @@ if (!empty($email) && !empty($mdp)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion Administrateur - FabLab</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
