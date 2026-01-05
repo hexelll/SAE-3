@@ -2,6 +2,7 @@
 require '../utils/gestionConnexion.php';
 require '../utils/admin.php';
 require '../utils/emprunt.php';
+require '../utils/materiel.php';
 require '../utils/emprunter.php';
 $pdo = Connexion::getConnexion();
 
