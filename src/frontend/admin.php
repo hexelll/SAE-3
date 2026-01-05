@@ -2,6 +2,7 @@
 require '../utils/gestionConnexion.php';
 require '../utils/admin.php';
 require '../utils/materiel.php';
+require '../utils/emprunt.php';
 $pdo = Connexion::getConnexion();
 $matDAO = new MaterielDAO();
 $empDAO = new EmpruntDAO();
