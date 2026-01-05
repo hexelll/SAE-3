@@ -2,18 +2,20 @@
 require '../utils/gestionConnexion.php';
 require '../utils/admin.php';
 $pdo = Connexion::getConnexion();
-try {
-    $hashmdp = $_REQUEST["mdp"];
-    $admin = (new AdminDAO())->findById($_REQUEST["id"]);
-    if ($admin->hashMdp != $hashmdp) {
-        header("Location: ConnexionAdmin.php");
-        exit();
-    }
-}
-catch(e) {
+function quit() {
     header("Location: ConnexionAdmin.php");
     exit();
 }
+try {
+    if (isset($_REQUEST["mdp"]) && isset($_REQUESt["id"])) {
+        $hashmdp = $_REQUEST["mdp"];
+        $admin = (new AdminDAO())->findById($_REQUEST["id"]);
+        if ($admin->hashMdp != $hashmdp)
+            quit();
+    }else 
+        quit();
+}
+catch(e) {quit();}
 $sql_resa = "
     SELECT e.idEmprunt, e.emailEmprunt, e.dateEmprunt, e.dateRetourPrevue, e.statutEmprunt, 
            GROUP_CONCAT(CONCAT(m.nomMateriel, ' (x', emp.quantité, ')') SEPARATOR ', ') as details
