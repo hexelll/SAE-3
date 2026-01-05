@@ -27,8 +27,8 @@ try {
     quit();
 }
 
-
-$idEmprunt = $_REQUEST['idEmprunt'];
+if (isset($_REQUEST['idEmprunt']))
+    $idEmprunt = $_REQUEST['idEmprunt'];
 $action = $_REQUEST['action'];
 $emprunt = $empDAO->findById($idEmprunt);
 switch ($action) {
