@@ -76,7 +76,7 @@
             $prepared->bindValue(":stockTot",$materiel->stock_total);
             $prepared->bindValue(":stockDisp",$materiel->stock_disponible);
             $prepared->bindValue(":empruntable",$materiel->empruntable);
-            echo $materiel->empruntable;
+            echo var_dump($materiel);
             $prepared->execute();
         }
     }
