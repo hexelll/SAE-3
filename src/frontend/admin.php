@@ -189,6 +189,8 @@ if (isset($_REQUEST["submitAjouter"])) {
         <div id="add-tab" class="tab-content">
             <div class="form-section">
                 <form action="" method="GET">
+                    <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
+                    <input type="hidden" name="id" value="<?php echo $_REQUEST["id"] ?>">
                 <div class="form-group">
                     <label>Nom :</label>
                     <input type="text" name="nom" required class="form-input">
