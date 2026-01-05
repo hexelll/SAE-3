@@ -409,8 +409,10 @@ body {
 }
 .form-select {
     color: #555;
+    border-radius: 6px;
+    background-color: #FFFFFF;
     padding: 8px 16px;
-    border: 1px solid transparent;
+    border: 1px solid #555;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
 }
