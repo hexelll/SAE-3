@@ -1,6 +1,6 @@
 <?php
 require '../utils/gestionConnexion.php';
-
+$pdo = Connexion::getConnexion();
 
 $search = isset($_GET['recherche']) ? $_GET['recherche'] : '';
 

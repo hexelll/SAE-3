@@ -1,6 +1,6 @@
 <?php
 require '../utils/gestionConnexion.php';
-
+$pdo = Connexion::getConnexion();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idEmprunt = $_POST['idEmprunt'];
     $action = $_POST['action'];

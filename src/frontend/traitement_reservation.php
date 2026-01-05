@@ -1,6 +1,6 @@
 <?php
 require '../utils/gestionConnexion.php';
-
+$pdo = Connexion::getConnexion();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $motif = $_POST['motif'];

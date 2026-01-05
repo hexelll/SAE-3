@@ -1,6 +1,6 @@
 <?php
 require '../utils/gestionConnexion.php';
-
+$pdo = Connexion::getConnexion();
 $sql_resa = "
     SELECT e.idEmprunt, e.emailEmprunt, e.dateEmprunt, e.dateRetourPrevue, e.statutEmprunt, 
            GROUP_CONCAT(CONCAT(m.nomMateriel, ' (x', emp.quantité, ')') SEPARATOR ', ') as details
