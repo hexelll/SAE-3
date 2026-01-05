@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $matDAO->update($emprunt);
         }
     }
-    
-    echo "<script>alert('$action avec succès !'); window.location.href='admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id."';</script>";
+    $admin = $admDAO->findById($_REQUEST["idA"]);
+    echo "<script>alert('action effectuée avec succès !'); window.location.href='admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id."';</script>";
 }
 ?>
