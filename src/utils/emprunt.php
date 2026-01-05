@@ -46,7 +46,6 @@
             $this->connexion = Connexion::getConnexion();
         }
         public function delete($id) {
-            echo $id;
             $prepared = $this->connexion->prepare("delete from Emprunt where idEmprunt=:id");
             $prepared->bindValue(":id",$id);
             $prepared->execute();
