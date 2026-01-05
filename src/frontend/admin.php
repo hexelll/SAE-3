@@ -208,6 +208,7 @@ if (isset($_REQUEST["submitDelete"])) {
             </form>
         </div>
         <div id="del-tab" class="tab-content">
+            <form action="?<?php echo "mdp=".$admin->hashMdp."&id=".$admin->id ?>" method="GET">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -221,6 +222,7 @@ if (isset($_REQUEST["submitDelete"])) {
                 </div>
                 <button type="submit" name="submitDelete" class="submit-btn">Supprimer le materiel</button>
             </div>
+            </form>
         </div>
         <div id="add-tab" class="tab-content">
             <div class="form-section">
