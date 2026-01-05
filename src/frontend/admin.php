@@ -7,7 +7,7 @@ function quit() {
     exit();
 }
 try {
-    if (isset($_REQUEST["mdp"]) && isset($_REQUESt["id"])) {
+    if (isset($_REQUEST["mdp"]) && isset($_REQUEST["id"])) {
         $hashmdp = $_REQUEST["mdp"];
         $admin = (new AdminDAO())->findById($_REQUEST["id"]);
         if ($admin->hashMdp != $hashmdp)
