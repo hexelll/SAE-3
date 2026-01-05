@@ -31,7 +31,7 @@
             $this->connexion = Connexion::getConnexion();
         }
         public function delete($emprunter) {
-            $emprunter->materiel->quantité += $emprunter->quantité;
+            $emprunter->materiel->stock_disponible += $emprunter->quantité;
             $prepared = $this->connexion->prepare("delete from Emprunter where idMateriel=:idm and idEmprunt=:ide");
             $prepared->bindValue(":idm",$emprunter->materiel->id);
             $prepared->bindValue(":ide",$emprunter->emprunt->id);
