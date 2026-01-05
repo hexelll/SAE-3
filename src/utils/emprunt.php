@@ -89,7 +89,7 @@
                 "dateEmprunt=:dateEmprunt,".
                 "dateRetourPrevue=:datePrevue,".
                 "dateRetourReelle=:dateReelle,".
-                "statutEmprunt=:statut ".
+                "statutEmprunt=:statut,".
                 "idAdmin=:idAdmin ".
                 "where idEmprunt = :id"
             );
