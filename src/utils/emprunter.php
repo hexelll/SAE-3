@@ -39,8 +39,8 @@
         }
         public function deleteList($emprunters) {
             foreach ($emprunters as $emprunter) {
-                $this->delete($emprunter);
                 (new EmpruntDAO())->delete($emprunter->materiel->id);
+                $this->delete($emprunter);
             }
         }
         public function findByMaterielId($id) {
