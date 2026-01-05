@@ -25,7 +25,7 @@
                 $tuple["idEmprunt"],
                 $tuple["emailEmprunt"],
                 $tuple["motifEmprunt"],
-                $adminDAO->findById($tuple["idAdmin"]),
+                $tuple["idAdmin"]?$adminDAO->findById($tuple["idAdmin"]):null,
                 $tuple["dateEmprunt"],
                 $tuple["dateRetourPrevue"],
                 $tuple["dateRetourReelle"],
