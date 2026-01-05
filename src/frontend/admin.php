@@ -50,6 +50,7 @@ if (isset($_REQUEST["submitModifier"])) {
 if (isset($_REQUEST["submitDelete"])) {
     $id = $_REQUEST["id"];
     $matDAO->delete($id);
+    header(" Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
 }
 
 ?>
@@ -220,7 +221,7 @@ if (isset($_REQUEST["submitDelete"])) {
         <div id="del-tab" class="tab-content">
             <form method="POST">
                 <input type="hidden" name="mdp" value="<?php $admin->hashMdp ?>">
-                    <input type="hidden" name="idA" value="<?php $admin->id ?>">
+                <input type="hidden" name="idA" value="<?php $admin->id ?>">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
