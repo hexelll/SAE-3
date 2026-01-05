@@ -43,6 +43,7 @@
         }
         public function getAll() {
             $prepared = $this->connexion->prepare("select * from Admin");
+            $prepared->execute();
             $tuples = $prepared->fetchAll();
             return Admin::fromTuples($tuples);
         }
