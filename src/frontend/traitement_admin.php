@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute([$idEmprunt]);
     }
 
-    header("Location: admin.php?".$admin->hashMdp."&id=".$admin->id);
+    header("Location: admin.php?mdp=".$admin->hashMdp."&id=".$admin->id);
     exit;
 }
 ?>
