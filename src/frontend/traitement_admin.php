@@ -25,9 +25,9 @@ try {
 }
 catch(e) {quit();}
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $idEmprunt = $_POST['idEmprunt'];
-    $action = $_POST['action'];
+
+    $idEmprunt = $_REQUEST['idEmprunt'];
+    $action = $_REQUEST['action'];
     $emprunt = $empDAO->findById($idEmprunt);
     switch ($action) {
         case "valider" : {
@@ -72,5 +72,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     echo "<script>alert('action effectuée avec succès !'); window.location.href='admin.php?mdp=".$_REQUEST["mdp"]."&idA=".$_REQUEST["idA"]."';</script>";
-}
+
 ?>
