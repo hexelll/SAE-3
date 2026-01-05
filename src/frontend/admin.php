@@ -160,7 +160,17 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                     <input type="date" name="date_fin" id="date_to" required class="form-input">
                 </div>
                 
+                <script>
+                    const toastTrigger = document.getElementById('liveToastBtn')
+                    const toastLiveExample = document.getElementById('liveToast')
 
+                    if (toastTrigger) {
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+                    toastTrigger.addEventListener('click', () => {
+                        toastBootstrap.show()
+                    })
+                    }
+                </script>
                 <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
 
                 <div class="toast-container position-fixed bottom-0 end-0 p-3">
