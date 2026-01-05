@@ -1,5 +1,6 @@
 <?php
 require '../utils/gestionConnexion.php';
+require '../utils/admin.php';
 $pdo = Connexion::getConnexion();
 
 $admDAO = new AdminDAO();
