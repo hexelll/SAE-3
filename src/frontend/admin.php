@@ -172,7 +172,9 @@ if (isset($_REQUEST["submitDelete"])) {
             </div>
         </div>
         <div id="modify-tab" class="tab-content">
-            <form action="admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST">
+            <form method="POST">
+                <input type="hidden" name="mdp" value="<?php $admin->hashMdp ?>">
+                    <input type="hidden" name="idA" value="<?php $admin->id ?>">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -216,7 +218,9 @@ if (isset($_REQUEST["submitDelete"])) {
             </form>
         </div>
         <div id="del-tab" class="tab-content">
-            <form action="admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST">
+            <form method="POST">
+                <input type="hidden" name="mdp" value="<?php $admin->hashMdp ?>">
+                    <input type="hidden" name="idA" value="<?php $admin->id ?>">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -234,7 +238,9 @@ if (isset($_REQUEST["submitDelete"])) {
         </div>
         <div id="add-tab" class="tab-content">
             <div class="form-section">
-                <form action="admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST">
+                <form method="POST">
+                    <input type="hidden" name="mdp" value="<?php $admin->hashMdp ?>">
+                    <input type="hidden" name="idA" value="<?php $admin->id ?>">
                 <div class="form-group">
                     <label>Nom :</label>
                     <input type="text" name="nom" required class="form-input">
