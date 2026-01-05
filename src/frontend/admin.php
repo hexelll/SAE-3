@@ -12,7 +12,7 @@ function quit() {
     exit();
 }
 try {
-    if (isset($_REQUEST["mdp"]) && isset($_REQUEST["idA"])) {
+    if (isset($_REQUEST["mdp"]) && $_REQUEST["mdp"] != "" && isset($_REQUEST["idA"] && $_REQUEST["idA"] != "")) {
         $hashmdp = $_REQUEST["mdp"];
         $admin = $admDAO->findById($_REQUEST["idA"]);
         if ($admin->hashMdp != $hashmdp)
@@ -21,7 +21,6 @@ try {
         quit();
 }
 catch(e) {quit();}
-echo $_REQUEST["idA"];
 $admin = $admDAO->findById($_REQUEST["idA"]);
 $emprunts = $empDAO->getAllEmprunts();
 $materiels = $matDAO->getAll();
