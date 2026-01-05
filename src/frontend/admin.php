@@ -181,6 +181,7 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                     non 
                     <input type="radio" name="empruntable">
                 </div>
+                <button type="submit" class="submit-btn">Modifier le materiel</button>
             </div>
         </div>
         <div id="add-tab" class="tab-content">
