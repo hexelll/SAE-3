@@ -34,6 +34,24 @@ if (isset($_REQUEST["submitAjouter"])) {
     $nvemprunt = new Materiel(null,$nom,$desc,$type,$stockTotal,$stockDispo,$empruntable);
     $matDAO->create($nvemprunt);
 }
+
+if (isset($_REQUEST["submitModifier"])) {
+    $id = $_REQUEST["id"];
+    $nom = $_REQUEST["nom"];
+    $desc = $_REQUEST["description"];
+    $type = $_REQUEST["type"];
+    $stockTotal = $_REQUEST["stockTotal"];
+    $stockDispo = $_REQUEST["stockDispo"];
+    $empruntable = $_REQUEST["empruntable"]=="empruntable" ? true : false;
+    $emprunt = new Materiel($id,$nom,$desc,$type,$stockTotal,$stockDispo,$empruntable);
+    $matDAO->update($emprunt);
+}
+
+if (isset($_REQUEST["submitDelete"])) {
+    $id = $_REQUEST["id"];
+    $matDAO->delete($id);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +86,7 @@ if (isset($_REQUEST["submitAjouter"])) {
             <button class="tab-btn" onclick="showTab('materials')">Inventaire</button>
             <button class="tab-btn" onclick="showTab('modify')">Modifier</button>
             <button class="tab-btn" onclick="showTab('add')">Ajouter</button>
+            <button class="tab-btn" onclick="showTab('del')">Supprimer</button>
         </div>
 
         <div id="emprunts-tab" class="tab-content active">
@@ -145,10 +164,11 @@ if (isset($_REQUEST["submitAjouter"])) {
             </div>
         </div>
         <div id="modify-tab" class="tab-content">
+            <form action="?<?php echo "mdp=".$admin->hashMdp."&id=".$admin->id ?>" method="GET">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
-                    <select name="id">
+                    <select name="id" class="form-select">
                         <?php
                             foreach($materiels as $m) {
                                 echo "<option value=\"".$m->id."\">".$m->nom." : ".$m->id."</option>";
@@ -184,6 +204,22 @@ if (isset($_REQUEST["submitAjouter"])) {
                     <input type="radio" name="empruntable">
                 </div>
                 <button type="submit" name="submitModifier" class="submit-btn">Modifier le materiel</button>
+            </div>
+            </form>
+        </div>
+        <div id="del-tab" class="tab-content">
+            <div class="form-section">
+                <div class="form-group">
+                    <label>materiel :</label>
+                    <select name="id" class="form-select">
+                        <?php
+                            foreach($materiels as $m) {
+                                echo "<option value=\"".$m->id."\">".$m->nom." : ".$m->id."</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+                <button type="submit" name="submitDelete" class="submit-btn">Supprimer le materiel</button>
             </div>
         </div>
         <div id="add-tab" class="tab-content">

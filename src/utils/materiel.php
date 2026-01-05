@@ -43,6 +43,11 @@
             $prepared->execute();
             return Materiel::fromTuples($prepared->fetchAll(PDO::FETCH_ASSOC));
         }
+        public function delete($id) {
+            $prepared = $this->connexion->prepare("delete from Materiel where idMateriel = :id");
+            $prepared->bindValue(":id",$id);
+            $prepared->execute();
+        }
         public function create($materiel) {
             $prepared = $this->connexion->prepare("insert into Materiel(nomMateriel,descriptionMateriel,typeMateriel,stockTotal,stockDisponible,empruntable) values(:nom,:desc,:type,:stockTot,:stockDisp,:empruntable)");
             $prepared->bindValue(":nom",$materiel->nom);
