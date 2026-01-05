@@ -21,8 +21,6 @@ try {
         quit();
 }
 catch(e) {quit();}
-echo $_REQUEST["mdp"];
-echo $_REQUEST["idA"];
 $emprunts = $empDAO->getAllEmprunts();
 $materiels = $matDAO->getAll();
 
@@ -92,7 +90,9 @@ $materiels = $matDAO->getAll();
                             </td>
                             <td class="action-buttons">
                                 <?php if($r->statut_emprunt == 'en cours'): ?>
-                                <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST" style="display:inline;">
+                                <form action="traitement_admin.php" method="POST" style="display:inline;">
+                                    <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
+                                    <input type="hidden" name="idA" value="<?php echo $_REQUEST["idA"] ?>">
                                     <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="valider">
                                     <button type="submit" class="btn btn-success">✓</button>
@@ -100,8 +100,8 @@ $materiels = $matDAO->getAll();
                                 <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST" style="display:inline;">
                                     <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="refuser">
-                                    <input type="hidden" name="mdp" value="<?php $_REQUEST["mdp"] ?>">
-                                    <input type="hidden" name="idA" value="<?php $_REQUEST["idA"] ?>">
+                                    <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
+                                    <input type="hidden" name="idA" value="<?php echo $_REQUEST["idA"] ?>">
                                     <button type="submit" class="btn btn-danger">✗</button>
                                 </form>
                                 <?php else: ?>
@@ -152,8 +152,8 @@ $materiels = $matDAO->getAll();
         <div id="modify-tab" class="tab-content">
             <form action="traitement_admin.php" method="POST">
                 <input type="hidden" name="action" value="submitModifier">
-                <input type="hidden" name="mdp" value="<?php $_REQUEST["mdp"] ?>">
-                <input type="hidden" name="idA" value="<?php $_REQUEST["idA"] ?>">
+                <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
+                <input type="hidden" name="idA" value="<?php echo $_REQUEST["idA"] ?>">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -199,8 +199,8 @@ $materiels = $matDAO->getAll();
         <div id="del-tab" class="tab-content">
             <form action="traitement_admin.php" method="POST">
                 <input type="hidden" name="action" value="submitDelete">
-                <input type="hidden" name="mdp" value="<?php $_REQUEST["mdp"] ?>">
-                <input type="hidden" name="idA" value="<?php $_REQUEST["idA"] ?>">
+                <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
+                <input type="hidden" name="idA" value="<?php echo $_REQUEST["idA"] ?>">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -220,8 +220,8 @@ $materiels = $matDAO->getAll();
             <div class="form-section">
                 <form action="traitement_admin.php" method="POST">
                     <input type="hidden" name="action" value="submitAjouter">
-                    <input type="hidden" name="mdp" value="<?php $_REQUEST["mdp"] ?>">
-                    <input type="hidden" name="idA" value="<?php $_REQUEST["idA"] ?>">
+                    <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
+                    <input type="hidden" name="idA" value="<?php echo $_REQUEST["idA"] ?>">
                 <div class="form-group">
                     <label>Nom :</label>
                     <input type="text" name="nom" required class="form-input">
