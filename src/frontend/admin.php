@@ -188,7 +188,7 @@ $materiels = $matDAO->getAll();
                 <div class="form-group">
                     <label>empruntable :</label>
                     oui 
-                    <input type="radio" name="empruntable">
+                    <input type="radio" checked name="empruntable">
                     non 
                     <input type="radio" name="empruntable">
                 </div>
@@ -236,16 +236,16 @@ $materiels = $matDAO->getAll();
                 </div>
                 <div class="form-group">
                     <label>Stock Total :</label>
-                    <input type="text" name="stockTotal" required class="form-input">
+                    <input type="number" name="stockTotal" required class="form-input">
                 </div>
                 <div class="form-group">
                     <label>Stock Dispo :</label>
-                    <input type="text" name="stockDispo" required class="form-input">
+                    <input type="number" name="stockDispo" required class="form-input">
                 </div>
                 <div class="form-group">
                     <label>empruntable :</label>
                     oui 
-                    <input type="radio" name="empruntable" value="empruntable">
+                    <input type="radio" checked name="empruntable" value="empruntable">
                     non 
                     <input type="radio" name="empruntable">
                 </div>
