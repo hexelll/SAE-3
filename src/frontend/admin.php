@@ -6,6 +6,7 @@ require '../utils/emprunt.php';
 $pdo = Connexion::getConnexion();
 $matDAO = new MaterielDAO();
 $empDAO = new EmpruntDAO();
+$admDAO = new AdminDAO();
 function quit() {
     header("Location: ConnexionAdmin.php");
     exit();
@@ -13,7 +14,7 @@ function quit() {
 try {
     if (isset($_REQUEST["mdp"]) && isset($_REQUEST["id"])) {
         $hashmdp = $_REQUEST["mdp"];
-        $admin = (new AdminDAO())->findById($_REQUEST["id"]);
+        $admin = $admDAO->findById($_REQUEST["id"]);
         if ($admin->hashMdp != $hashmdp)
             quit();
     }else 
