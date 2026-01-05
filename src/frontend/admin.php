@@ -21,7 +21,6 @@ try {
         quit();
 }
 catch(e) {quit();}
-$admin = $admDAO->findById($_REQUEST["idA"]);
 $emprunts = $empDAO->getAllEmprunts();
 $materiels = $matDAO->getAll();
 
@@ -99,6 +98,8 @@ $materiels = $matDAO->getAll();
                                 <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST" style="display:inline;">
                                     <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="refuser">
+                                    <input type="hidden" name="mdp" value="<?php $_REQUEST["mdp"] ?>">
+                                    <input type="hidden" name="idA" value="<?php $_REQUEST["idA"] ?>">
                                     <button type="submit" class="btn btn-danger">✗</button>
                                 </form>
                                 <?php else: ?>
@@ -109,6 +110,8 @@ $materiels = $matDAO->getAll();
                                 <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST" style="display:inline;">
                                     <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="supprimer">
+                                    <input type="hidden" name="mdp" value="<?php $_REQUEST["mdp"] ?>">
+                                    <input type="hidden" name="idA" value="<?php $_REQUEST["idA"] ?>">
                                     <button type="submit" class="btn btn-danger">x</button>
                                 </form>
                             </td>
@@ -145,10 +148,10 @@ $materiels = $matDAO->getAll();
             </div>
         </div>
         <div id="modify-tab" class="tab-content">
-            <form method="POST">
+            <form action="traitement_admin.php" method="POST">
                 <input type="hidden" name="action" value="submitModifier">
-                <input type="hidden" name="mdp" value="<?php $admin->hashMdp ?>">
-                <input type="hidden" name="idA" value="<?php $admin->id ?>">
+                <input type="hidden" name="mdp" value="<?php $_REQUEST["mdp"] ?>">
+                <input type="hidden" name="idA" value="<?php $_REQUEST["idA"] ?>">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -194,8 +197,8 @@ $materiels = $matDAO->getAll();
         <div id="del-tab" class="tab-content">
             <form action="traitement_admin.php" method="POST">
                 <input type="hidden" name="action" value="submitDelete">
-                <input type="hidden" name="mdp" value="<?php $admin->hashMdp ?>">
-                <input type="hidden" name="idA" value="<?php $admin->id ?>">
+                <input type="hidden" name="mdp" value="<?php $_REQUEST["mdp"] ?>">
+                <input type="hidden" name="idA" value="<?php $_REQUEST["idA"] ?>">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -215,8 +218,8 @@ $materiels = $matDAO->getAll();
             <div class="form-section">
                 <form action="traitement_admin.php" method="POST">
                     <input type="hidden" name="action" value="submitAjouter">
-                    <input type="hidden" name="mdp" value="<?php $admin->hashMdp ?>">
-                    <input type="hidden" name="idA" value="<?php $admin->id ?>">
+                    <input type="hidden" name="mdp" value="<?php $_REQUEST["mdp"] ?>">
+                    <input type="hidden" name="idA" value="<?php $_REQUEST["idA"] ?>">
                 <div class="form-group">
                     <label>Nom :</label>
                     <input type="text" name="nom" required class="form-input">
