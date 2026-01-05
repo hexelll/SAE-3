@@ -29,10 +29,11 @@ try {
     quit();
 }
 
-if (isset($_REQUEST['idEmprunt']))
+if (isset($_REQUEST['idEmprunt'])) {
     $idEmprunt = $_REQUEST['idEmprunt'];
+    $emprunt = $empDAO->findById($idEmprunt);
+}
 $action = $_REQUEST['action'];
-$emprunt = $empDAO->findById($idEmprunt);
 switch ($action) {
     case "valider": {
         $emprunt->statut_emprunt = "validé";
@@ -80,6 +81,6 @@ switch ($action) {
         $matDAO->update($emprunt);
     }
 }
-//echo "<script>alert('action effectuée avec succès !'); window.location.href='admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "';</script>";
-echo "'admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "'";
+echo "<script>alert('action effectuée avec succès !'); window.location.href='admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "';</script>";
+//echo "'admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "'";
 ?>
