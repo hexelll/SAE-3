@@ -62,6 +62,7 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
         <div class="tabs">
             <button class="tab-btn active" onclick="showTab('reservations')">Demandes</button>
             <button class="tab-btn" onclick="showTab('materials')">Inventaire</button>
+            <button class="tab-btn" onclick="showTab('modify')">Modifier</button>
         </div>
 
         <div id="reservations-tab" class="tab-content active">
@@ -136,6 +137,47 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div id="modify-tab" class="tab-content">
+            <h2>Inventaire</h2>
+            <div class="form-section">
+                <h2>Vos informations</h2>
+                <div class="form-group">
+                    <label>Email :</label>
+                    <input type="email" name="email" required class="form-input" placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Motif de l'emprunt :</label>
+                    <textarea name="motif" required class="form-input" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Date début :</label>
+                    <input type="date" name="date_debut" id="date_from" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Date fin (prévue) :</label>
+                    <input type="date" name="date_fin" id="date_to" required class="form-input">
+                </div>
+                
+
+                <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                    <img src="..." class="rounded me-2" alt="...">
+                    <strong class="me-auto">Bootstrap</strong>
+                    <small>11 mins ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                    Hello, world! This is a toast message.
+                    </div>
+                </div>
+                </div>
+
+
             </div>
         </div>
     </div>
