@@ -90,6 +90,7 @@
                 "dateRetourPrevue=:datePrevue,".
                 "dateRetourReelle=:dateReelle,".
                 "statutEmprunt=:statut ".
+                "idAdmin=:idAdmin".
                 "where idEmprunt = :id"
             );
             $prepared->bindValue(":id",$emprunt->id);
