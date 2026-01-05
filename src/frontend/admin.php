@@ -188,6 +188,7 @@ if (isset($_REQUEST["submitAjouter"])) {
         </div>
         <div id="add-tab" class="tab-content">
             <div class="form-section">
+                <form action="" method="GET">
                 <div class="form-group">
                     <label>Nom :</label>
                     <input type="text" name="nom" required class="form-input">
@@ -216,6 +217,7 @@ if (isset($_REQUEST["submitAjouter"])) {
                     <input type="radio" name="empruntable">
                 </div>
                 <button type="submit" name="submitAjouter" class="submit-btn">Ajouter le materiel</button>
+                </form>
             </div>
         </div>
     </div>
