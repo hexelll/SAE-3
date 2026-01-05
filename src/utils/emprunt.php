@@ -45,6 +45,11 @@
         public function __construct() {
             $this->connexion = Connexion::getConnexion();
         }
+        public function delete($id) {
+            $prepared = $this->connexion->prepare("delete from Emprunt where idEmprunt=:id");
+            $prepared->bindValue(":id",$id);
+            $prepared->execute();
+        }
         public function findById($id) {
             $prepared = $this->connexion->prepare("select * from Emprunt where idEmprunt = :id");
             $prepared->bindValue(":id",$id,PDO::PARAM_INT);

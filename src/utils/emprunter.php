@@ -30,13 +30,16 @@
         public function __construct() {
             $this->connexion = Connexion::getConnexion();
         }
-        public function delete() {
+        public function delete($emprunter) {
+            $emprunter->materiel->quantité += $emprunter->quantité;
             $prepared = $this->connexion->prepare("delete from Emprunter where idMateriel=:idm and idEmprunt=:ide");
+            $prepared->bindValue(":idm",$emprunter->materiel->id);
+            $prepared->bindValue(":ide",$emprunter->emprunt->id);
             $prepared->execute();
         }
         public function deleteList($emprunters) {
             foreach ($emprunters as $emprunter)
-                $emprunter->delete();
+                $this->delete($emprunter);
         }
         public function findByMaterielId($id) {
             $prepared = $this->connexion->prepare("select * from Emprunter where idMateriel = :id");
