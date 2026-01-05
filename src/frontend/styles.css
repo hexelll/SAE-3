@@ -413,6 +413,6 @@ body {
     background-color: #FFFFFF;
     padding: 8px 16px;
     border: 1px solid #555;
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.2) transparent;
     cursor: pointer;
 }
