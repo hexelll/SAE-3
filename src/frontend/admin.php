@@ -21,6 +21,8 @@ try {
         quit();
 }
 catch(e) {quit();}
+echo $_REQUEST["mdp"];
+echo $_REQUEST["idA"];
 $emprunts = $empDAO->getAllEmprunts();
 $materiels = $matDAO->getAll();
 
