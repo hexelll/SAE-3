@@ -42,11 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } case 'supprimer': {
             $items = $emprDAO->findByEmpruntId($idEmprunt);
             $emprDAO->deleteList($items);
+            echo 'holla';
             break;
         }
     }
 
-    header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
-    exit();
+    //header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
+    //exit();
 }
 ?>
