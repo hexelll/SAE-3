@@ -34,7 +34,6 @@ if (isset($_REQUEST["submitAjouter"])) {
     $nvemprunt = new Materiel(null,$nom,$desc,$type,$stockTotal,$stockDispo,$empruntable);
     $matDAO->create($nvemprunt);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -152,7 +151,7 @@ if (isset($_REQUEST["submitAjouter"])) {
                     <select name="id">
                         <?php
                             foreach($materiels as $m) {
-                                echo "<option value=\"".$m->id."\">".$m->nom."</option>";
+                                echo "<option value=\"".$m->id."\">".$m->nom." : ".$m->id."</option>";
                             }
                         ?>
                     </select>
