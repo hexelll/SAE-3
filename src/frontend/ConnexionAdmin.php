@@ -50,7 +50,7 @@ if (!empty($email) && !empty($mdp)) {
             <p>Veuillez vous identifier pour accéder à la gestion</p>
         </header>
 
-        <a href="index.html" class="back-link">← Retour à l'accueil</a>
+        <a href="index.php" class="back-link">← Retour à l'accueil</a>
 
         <div class="reservation-form" style="display: block; max-width: 500px; margin: 0 auto;">
             <div class="form-section">
