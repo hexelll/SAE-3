@@ -3,8 +3,14 @@ require '../utils/gestionConnexion.php';
 require '../utils/admin.php';
 $pdo = Connexion::getConnexion();
 $hashmdp = $_REQUEST["mdp"];
-$admin = (new AdminDAO())->findById($_REQUEST["id"]);
-if ($admin->hashMdp != $hashmdp) {
+try {
+    $admin = (new AdminDAO())->findById($_REQUEST["id"]);
+    if ($admin->hashMdp != $hashmdp) {
+        header("Location: ConnexionAdmin.php");
+        exit();
+    }
+}
+catch(e) {
     header("Location: ConnexionAdmin.php");
     exit();
 }
