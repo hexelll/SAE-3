@@ -4,6 +4,7 @@ require '../utils/admin.php';
 require '../utils/materiel.php';
 $pdo = Connexion::getConnexion();
 $matDAO = new MaterielDAO();
+$empDAO = new EmpruntDAO();
 function quit() {
     header("Location: ConnexionAdmin.php");
     exit();
@@ -18,20 +19,20 @@ try {
         quit();
 }
 catch(e) {quit();}
-$sql_resa = "
-    SELECT e.idEmprunt, e.emailEmprunt, e.dateEmprunt, e.dateRetourPrevue, e.statutEmprunt, 
-           GROUP_CONCAT(CONCAT(m.nomMateriel, ' (x', emp.quantité, ')') SEPARATOR ', ') as details
-    FROM Emprunt e
-    JOIN Emprunter emp ON e.idEmprunt = emp.idEmprunt
-    JOIN Materiel m ON emp.idMateriel = m.idMateriel
-    GROUP BY e.idEmprunt
-    ORDER BY e.dateEmprunt DESC";
-$stmt_resa = $pdo->query($sql_resa);
-$reservations = $stmt_resa->fetchAll(PDO::FETCH_ASSOC);
+$emprunts = $empDAO->getAllEmprunts();
+$materiels = $matDAO->getAll();
 
-$sql_mat = "SELECT * FROM Materiel";
-$stmt_mat = $pdo->query($sql_mat);
-$materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
+if (isset($_REQUEST["submitAjouter"])) {
+    $nom = $_REQUEST["nom"];
+    $desc = $_REQUEST["description"];
+    $type = $_REQUEST["type"];
+    $stockTotal = $_REQUEST["stockTotal"];
+    $stockDispo = $_REQUEST["stockDispo"];
+    $empruntable = $_REQUEST["empruntable"]=="empruntable" ? true : false;
+    $nvemprunt = new Materiel(null,$nom,$desc,$type,$stockTotal,$stockDispo,$empruntable);
+    $matDAO->create($nvemprunt);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -62,13 +63,13 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="showTab('reservations')">Demandes</button>
+            <button class="tab-btn active" onclick="showTab('emprunts')">Demandes</button>
             <button class="tab-btn" onclick="showTab('materials')">Inventaire</button>
             <button class="tab-btn" onclick="showTab('modify')">Modifier</button>
             <button class="tab-btn" onclick="showTab('add')">Ajouter</button>
         </div>
 
-        <div id="reservations-tab" class="tab-content active">
+        <div id="emprunts-tab" class="tab-content active">
             <h2>Suivi des emprunts</h2>
             <div class="table-container">
                 <table class="admin-table">
@@ -83,26 +84,26 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($reservations as $r): ?>
+                        <?php foreach ($emprunts as $r): ?>
                         <tr>
-                            <td>#<?php echo $r['idEmprunt']; ?></td>
-                            <td><?php echo htmlspecialchars($r['emailEmprunt']); ?></td>
-                            <td><?php echo htmlspecialchars($r['details']); ?></td>
-                            <td><?php echo $r['dateEmprunt']; ?> au <?php echo $r['dateRetourPrevue']; ?></td>
+                            <td>#<?php echo $r->id; ?></td>
+                            <td><?php echo htmlspecialchars($r->email); ?></td>
+                            <td><?php echo htmlspecialchars($r->motif); ?></td>
+                            <td><?php echo $r->date_emprunt; ?> au <?php echo $r->date_retour_prevue; ?></td>
                             <td>
-                                <span class="badge <?php echo ($r['statutEmprunt']=='validé'?'badge-success':($r['statutEmprunt']=='refusé'?'badge-danger':'badge-warning')); ?>">
-                                    <?php echo htmlspecialchars($r['statutEmprunt']); ?>
+                                <span class="badge <?php echo ($r->statut_emprunt=='validé'?'badge-success':($r->statut_emprunt=='refusé'?'badge-danger':'badge-warning')); ?>">
+                                    <?php echo htmlspecialchars($r->statut_emprunt); ?>
                                 </span>
                             </td>
                             <td class="action-buttons">
-                                <?php if($r['statutEmprunt'] == 'en cours'): ?>
+                                <?php if($r->statut_emprunt == 'en cours'): ?>
                                 <form action="traitement_admin.php" method="POST" style="display:inline;">
-                                    <input type="hidden" name="idEmprunt" value="<?php echo $r['idEmprunt']; ?>">
+                                    <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="valider">
                                     <button type="submit" class="btn btn-success">✓</button>
                                 </form>
                                 <form action="traitement_admin.php" method="POST" style="display:inline;">
-                                    <input type="hidden" name="idEmprunt" value="<?php echo $r['idEmprunt']; ?>">
+                                    <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="refuser">
                                     <button type="submit" class="btn btn-danger">✗</button>
                                 </form>
@@ -132,10 +133,10 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                     <tbody>
                         <?php foreach ($materiels as $m): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($m['nomMateriel']); ?></td>
-                            <td><?php echo htmlspecialchars($m['typeMateriel']); ?></td>
-                            <td><?php echo $m['stockTotal']; ?></td>
-                            <td><?php echo $m['stockDisponible']; ?></td>
+                            <td><?php echo htmlspecialchars($m->nom); ?></td>
+                            <td><?php echo htmlspecialchars($m->type); ?></td>
+                            <td><?php echo $m->stock_total; ?></td>
+                            <td><?php echo $m->stock_disponible; ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -148,8 +149,8 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                     <label>materiel :</label>
                     <select name="id">
                         <?php
-                            foreach($matDAO->getAll() as $mat) {
-                                echo "<option value=\"".$mat->id."\">".$mat->nom."</option>";
+                            foreach($materiels as $m) {
+                                echo "<option value=\"".$m->id."\">".$m->nom."</option>";
                             }
                         ?>
                     </select>
@@ -181,7 +182,7 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                     non 
                     <input type="radio" name="empruntable">
                 </div>
-                <button type="submit" class="submit-btn">Modifier le materiel</button>
+                <button type="submit" name="submitModifier" class="submit-btn">Modifier le materiel</button>
             </div>
         </div>
         <div id="add-tab" class="tab-content">
@@ -209,11 +210,11 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                 <div class="form-group">
                     <label>empruntable :</label>
                     oui 
-                    <input type="radio" name="empruntable">
+                    <input type="radio" name="empruntable" value="empruntable">
                     non 
                     <input type="radio" name="empruntable">
                 </div>
-                <button type="submit" class="submit-btn">Ajouter le materiel</button>
+                <button type="submit" name="submitAjouter" class="submit-btn">Ajouter le materiel</button>
             </div>
         </div>
     </div>

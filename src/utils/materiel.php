@@ -44,8 +44,7 @@
             return Materiel::fromTuples($prepared->fetchAll(PDO::FETCH_ASSOC));
         }
         public function create($materiel) {
-            $prepared = $this->connexion->prepare("insert into Materiel values(:id,:nom,:desc,:type,:stockTot,:stockDisp,:empruntable)");
-            $prepared->bindValue(":id",$materiel->id);
+            $prepared = $this->connexion->prepare("insert into Materiel values(:nom,:desc,:type,:stockTot,:stockDisp,:empruntable)");
             $prepared->bindValue(":nom",$materiel->nom);
             $prepared->bindValue(":desc",$materiel->description);
             $prepared->bindValue(":type",$materiel->type);
