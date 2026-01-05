@@ -9,7 +9,7 @@
             $this->hashMdp = $hashMdp;
         }
         public static function fromTuple($tuple) {
-            echo $tuple;
+            echo var_dump($tuple);
             return new Admin($tuple["idAdmin"],$tuple["emailAdmin"],$tuple["hashAdmin"]);
         }
         public static function fromTuples($tuples) {
