@@ -95,7 +95,7 @@
             $prepared->bindValue(":id",$emprunt->id);
             $prepared->bindValue(":email",$emprunt->email);
             $prepared->bindValue(":motif",$emprunt->motif);
-            $prepared->bindValue(":idAdmin",$emprunt->admin->id?$emprunt->admin->id:"NULL");
+            $prepared->bindValue(":idAdmin",$emprunt->admin?$emprunt->admin->id:null);
             $prepared->bindValue(":dateEmprunt",$emprunt->date_emprunt);
             $prepared->bindValue(":datePrevue",$emprunt->date_retour_prevue);
             $prepared->bindValue(":dateReelle",$emprunt->date_retour_reelle);
