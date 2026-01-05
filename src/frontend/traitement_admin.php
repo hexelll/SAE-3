@@ -1,6 +1,23 @@
 <?php
 require '../utils/gestionConnexion.php';
 $pdo = Connexion::getConnexion();
+
+$admDAO = new AdminDAO();
+function quit() {
+    header("Location: ConnexionAdmin.php");
+    exit();
+}
+try {
+    if (isset($_REQUEST["mdp"]) && isset($_REQUEST["id"])) {
+        $hashmdp = $_REQUEST["mdp"];
+        $admin = $admDAO->findById($_REQUEST["id"]);
+        if ($admin->hashMdp != $hashmdp)
+            quit();
+    }else 
+        quit();
+}
+catch(e) {quit();}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idEmprunt = $_POST['idEmprunt'];
     $action = $_POST['action'];
@@ -22,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute([$idEmprunt]);
     }
 
-    header('Location: admin.php');
+    header("Location: admin.php?".$admin->hashMdp."&id=".$admin->id);
     exit;
 }
 ?>

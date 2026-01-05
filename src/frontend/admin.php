@@ -99,12 +99,12 @@ if (isset($_REQUEST["submitAjouter"])) {
                             </td>
                             <td class="action-buttons">
                                 <?php if($r->statut_emprunt == 'en cours'): ?>
-                                <form action="traitement_admin.php" method="POST" style="display:inline;">
+                                <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&id=".$admin->id ?>" method="POST" style="display:inline;">
                                     <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="valider">
                                     <button type="submit" class="btn btn-success">✓</button>
                                 </form>
-                                <form action="traitement_admin.php" method="POST" style="display:inline;">
+                                <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&id=".$admin->id ?>" method="POST" style="display:inline;">
                                     <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="refuser">
                                     <button type="submit" class="btn btn-danger">✗</button>
@@ -189,7 +189,7 @@ if (isset($_REQUEST["submitAjouter"])) {
         </div>
         <div id="add-tab" class="tab-content">
             <div class="form-section">
-                <form action="" method="GET">
+                <form action="?<?php echo "mdp=".$admin->hashMdp."&id=".$admin->id ?>" method="GET">
                     <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
                     <input type="hidden" name="id" value="<?php echo $_REQUEST["id"] ?>">
                 <div class="form-group">
