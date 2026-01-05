@@ -112,8 +112,8 @@ $materiels = $matDAO->getAll();
                                 <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST" style="display:inline;">
                                     <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="supprimer">
-                                    <input type="hidden" name="mdp" value="<?php $_REQUEST["mdp"] ?>">
-                                    <input type="hidden" name="idA" value="<?php $_REQUEST["idA"] ?>">
+                                    <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
+                                    <input type="hidden" name="idA" value="<?php echo $_REQUEST["idA"] ?>">
                                     <button type="submit" class="btn btn-danger">x</button>
                                 </form>
                             </td>
