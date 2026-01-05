@@ -1,7 +1,9 @@
 <?php
 require '../utils/gestionConnexion.php';
 require '../utils/admin.php';
+require '../utils/materiel.php';
 $pdo = Connexion::getConnexion();
+$matDAO = new MaterielDAO();
 function quit() {
     header("Location: ConnexionAdmin.php");
     exit();
@@ -39,15 +41,6 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
     <title>Administration - Tableau de bord</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-        const toastTrigger = document.getElementById('liveToastBtn')
-                    const toastLiveExample = document.getElementById('liveToast')
-
-                    if (toastTrigger) {
-                        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-                        toastTrigger.addEventListener('click', () => {
-                            toastBootstrap.show()
-                        })
-                    }
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -151,39 +144,43 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
         <div id="modify-tab" class="tab-content">
             <h2>Inventaire</h2>
             <div class="form-section">
-                <h2>Vos informations</h2>
                 <div class="form-group">
-                    <label>Email :</label>
-                    <input type="email" name="email" required class="form-input" placeholder="votre@email.com">
-                </div>
-                <div class="form-group">
-                    <label>Motif de l'emprunt :</label>
-                    <textarea name="motif" required class="form-input" rows="2"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Date début :</label>
-                    <input type="date" name="date_debut" id="date_from" required class="form-input">
+                    <label>materiel :</label>
+                    <select name="id">
+                        <?php
+                            foreach($matDAO->getAll() as $mat) {
+                                echo "<option value=\"".$mat->id."\">".$mat->nom."</option>";
+                            }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>Date fin (prévue) :</label>
-                    <input type="date" name="date_fin" id="date_to" required class="form-input">
+                    <label>Description :</label>
+                    <textarea name="description" required class="form-input" rows="2"></textarea>
                 </div>
-                <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-
-                <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                    <img src="..." class="rounded me-2" alt="...">
-                    <strong class="me-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                    Hello, world! This is a toast message.
-                    </div>
+                <div class="form-group">
+                    <label>Nom :</label>
+                    <input type="text" name="nom" required class="form-input">
                 </div>
+                <div class="form-group">
+                    <label>Type :</label>
+                    <input type="text" name="type" required class="form-input">
                 </div>
-
+                <div class="form-group">
+                    <label>Stock Total :</label>
+                    <input type="text" name="stockTotal" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Stock Dispo :</label>
+                    <input type="text" name="stockDispo" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>empruntable :</label>
+                    <p> oui </p>
+                    <input type="radio" name="empruntable">
+                    <p> non </p>
+                    <input type="radio" name="empruntable">
+                </div>
 
             </div>
         </div>
