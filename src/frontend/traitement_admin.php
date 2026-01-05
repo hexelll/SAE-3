@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require '../utils/gestionConnexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idEmprunt = $_POST['idEmprunt'];

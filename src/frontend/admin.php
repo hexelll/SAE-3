@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require '../utils/gestionConnexion.php';
 
 $sql_resa = "
     SELECT e.idEmprunt, e.emailEmprunt, e.dateEmprunt, e.dateRetourPrevue, e.statutEmprunt, 

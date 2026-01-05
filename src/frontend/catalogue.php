@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require '../utils/gestionConnexion.php';
 
 
 $search = isset($_GET['recherche']) ? $_GET['recherche'] : '';
