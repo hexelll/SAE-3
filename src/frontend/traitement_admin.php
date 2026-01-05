@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    //header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
-    //exit();
+    header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
+    exit();
 }
 ?>
