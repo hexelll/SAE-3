@@ -38,8 +38,10 @@
             $prepared->execute();
         }
         public function deleteList($emprunters) {
-            foreach ($emprunters as $emprunter)
+            foreach ($emprunters as $emprunter) {
                 $this->delete($emprunter);
+                (new EmpruntDAO())->delete($emprunter->materiel);
+            }
         }
         public function findByMaterielId($id) {
             $prepared = $this->connexion->prepare("select * from Emprunter where idMateriel = :id");
