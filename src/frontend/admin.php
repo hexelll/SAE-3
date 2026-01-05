@@ -5,7 +5,7 @@ $pdo = Connexion::getConnexion();
 $hashmdp = $_REQUEST["mdp"];
 $admin = (new AdminDAO())->findById($_REQUEST["id"]);
 if ($admin->hashMdp != $hashmdp) {
-    header("Location: connexionAdmin.php");
+    header("Location: ConnexionAdmin.php");
     exit();
 }
 $sql_resa = "
