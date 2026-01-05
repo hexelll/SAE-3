@@ -13,9 +13,9 @@ function quit() {
     exit();
 }
 try {
-    if (isset($_REQUEST["mdp"]) && isset($_REQUEST["id"])) {
+    if (isset($_REQUEST["mdp"]) && isset($_REQUEST["idA"])) {
         $hashmdp = $_REQUEST["mdp"];
-        $admin = $admDAO->findById($_REQUEST["id"]);
+        $admin = $admDAO->findById($_REQUEST["idA"]);
         if ($admin->hashMdp != $hashmdp)
             quit();
     }else 
