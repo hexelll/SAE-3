@@ -14,7 +14,7 @@
             $this->email = $email;
             $this->motif = $motif;
             $this->admin = $admin;
-            $this->$date_emprunt = $date_emprunt;
+            $this->date_emprunt = $date_emprunt;
             $this->date_retour_prevue = $date_retour_prevue;
             $this->date_retour_reelle = $date_retour_reelle;
             $this->statut_emprunt = $statut_emprunt;
