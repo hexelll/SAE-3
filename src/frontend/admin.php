@@ -39,6 +39,15 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
     <title>Administration - Tableau de bord</title>
     <link rel="stylesheet" href="styles.css">
     <script>
+        const toastTrigger = document.getElementById('liveToastBtn')
+                    const toastLiveExample = document.getElementById('liveToast')
+
+                    if (toastTrigger) {
+                        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+                        toastTrigger.addEventListener('click', () => {
+                            toastBootstrap.show()
+                        })
+                    }
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -159,18 +168,6 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                     <label>Date fin (prévue) :</label>
                     <input type="date" name="date_fin" id="date_to" required class="form-input">
                 </div>
-                
-                <script>
-                    const toastTrigger = document.getElementById('liveToastBtn')
-                    const toastLiveExample = document.getElementById('liveToast')
-
-                    if (toastTrigger) {
-                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-                    toastTrigger.addEventListener('click', () => {
-                        toastBootstrap.show()
-                    })
-                    }
-                </script>
                 <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
 
                 <div class="toast-container position-fixed bottom-0 end-0 p-3">
