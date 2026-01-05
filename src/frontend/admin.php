@@ -141,8 +141,6 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                 </table>
             </div>
         </div>
-        <div id="modify-tab" class="tab-content">
-            <h2>Inventaire</h2>
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -155,12 +153,12 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Description :</label>
-                    <textarea name="description" required class="form-input" rows="2"></textarea>
-                </div>
-                <div class="form-group">
                     <label>Nom :</label>
                     <input type="text" name="nom" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Description :</label>
+                    <textarea name="description" required class="form-input" rows="2"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Type :</label>
@@ -183,7 +181,7 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
             </div>
-        </div>
+
     </div>
 </body>
 </html>
