@@ -42,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } case 'supprimer': {
             $items = $emprDAO->findByEmpruntId($idEmprunt);
             $emprDAO->deleteList($items);
-            echo 'holla';
             break;
         }
     }
