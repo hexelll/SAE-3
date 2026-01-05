@@ -175,9 +175,9 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="form-group">
                     <label>empruntable :</label>
-                    <p> oui </p>
+                    oui 
                     <input type="radio" name="empruntable">
-                    <p> non </p>
+                    non 
                     <input type="radio" name="empruntable">
                 </div>
 
