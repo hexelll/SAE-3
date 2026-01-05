@@ -40,7 +40,7 @@
         public function deleteList($emprunters) {
             foreach ($emprunters as $emprunter) {
                 $this->delete($emprunter);
-                (new EmpruntDAO())->delete($emprunter->materiel);
+                (new EmpruntDAO())->delete($emprunter->materiel->id);
             }
         }
         public function findByMaterielId($id) {
