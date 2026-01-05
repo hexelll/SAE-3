@@ -93,7 +93,6 @@
                 "idAdmin=:idAdmin ".
                 "where idEmprunt = :id"
             );
-            echo var_dump($emprunt);
             $prepared->bindValue(":id",$emprunt->id);
             $prepared->bindValue(":email",$emprunt->email);
             $prepared->bindValue(":motif",$emprunt->motif);
