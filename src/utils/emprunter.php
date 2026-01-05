@@ -39,7 +39,6 @@
         }
         public function deleteList($emprunters) {
             foreach ($emprunters as $emprunter) {
-                (new EmpruntDAO())->delete($emprunter->emprunt->id);
                 $this->delete($emprunter);
             }
         }
