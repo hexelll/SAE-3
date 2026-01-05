@@ -46,6 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             break;
         }
     }
-    echo "<script>alert('$action effectuée avec succès !'); window.location.href='admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id."';</script>";
+    echo "<script>alert('$action avec succès !'); window.location.href='admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id."';</script>";
 }
 ?>
