@@ -141,6 +141,7 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                 </table>
             </div>
         </div>
+        <div id="modify-tab" class="tab-content">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -181,7 +182,7 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
             </div>
-
+        </div>
     </div>
 </body>
 </html>
