@@ -65,6 +65,7 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
             <button class="tab-btn active" onclick="showTab('reservations')">Demandes</button>
             <button class="tab-btn" onclick="showTab('materials')">Inventaire</button>
             <button class="tab-btn" onclick="showTab('modify')">Modifier</button>
+            <button class="tab-btn" onclick="showTab('add')">Ajouter</button>
         </div>
 
         <div id="reservations-tab" class="tab-content active">
@@ -180,7 +181,38 @@ $materiels = $stmt_mat->fetchAll(PDO::FETCH_ASSOC);
                     non 
                     <input type="radio" name="empruntable">
                 </div>
-
+            </div>
+        </div>
+        <div id="add-tab" class="tab-content">
+            <div class="form-section">
+                <div class="form-group">
+                    <label>Nom :</label>
+                    <input type="text" name="nom" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Description :</label>
+                    <textarea name="description" required class="form-input" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Type :</label>
+                    <input type="text" name="type" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Stock Total :</label>
+                    <input type="text" name="stockTotal" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Stock Dispo :</label>
+                    <input type="text" name="stockDispo" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>empruntable :</label>
+                    oui 
+                    <input type="radio" name="empruntable">
+                    non 
+                    <input type="radio" name="empruntable">
+                </div>
+                <button type="submit" class="submit-btn">Ajouter le materiel</button>
             </div>
         </div>
     </div>
