@@ -21,6 +21,7 @@ try {
         quit();
 }
 catch(e) {quit();}
+echo $_REQUEST["idA"];
 $admin = $admDAO->findById($_REQUEST["idA"]);
 $emprunts = $empDAO->getAllEmprunts();
 $materiels = $matDAO->getAll();
