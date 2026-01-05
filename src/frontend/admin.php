@@ -12,9 +12,9 @@ function quit() {
     exit();
 }
 try {
-    if (isset($_REQUEST["mdp"]) && isset($_REQUEST["id"])) {
+    if (isset($_REQUEST["mdp"]) && isset($_REQUEST["idA"])) {
         $hashmdp = $_REQUEST["mdp"];
-        $admin = $admDAO->findById($_REQUEST["id"]);
+        $admin = $admDAO->findById($_REQUEST["idA"]);
         if ($admin->hashMdp != $hashmdp)
             quit();
     }else 
@@ -117,12 +117,12 @@ if (isset($_REQUEST["submitDelete"])) {
                             </td>
                             <td class="action-buttons">
                                 <?php if($r->statut_emprunt == 'en cours'): ?>
-                                <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&id=".$admin->id ?>" method="POST" style="display:inline;">
+                                <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST" style="display:inline;">
                                     <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="valider">
                                     <button type="submit" class="btn btn-success">✓</button>
                                 </form>
-                                <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&id=".$admin->id ?>" method="POST" style="display:inline;">
+                                <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST" style="display:inline;">
                                     <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
                                     <input type="hidden" name="action" value="refuser">
                                     <button type="submit" class="btn btn-danger">✗</button>
@@ -164,7 +164,7 @@ if (isset($_REQUEST["submitDelete"])) {
             </div>
         </div>
         <div id="modify-tab" class="tab-content">
-            <form action="?<?php echo "mdp=".$admin->hashMdp."&id=".$admin->id ?>" method="GET">
+            <form action="?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -208,7 +208,7 @@ if (isset($_REQUEST["submitDelete"])) {
             </form>
         </div>
         <div id="del-tab" class="tab-content">
-            <form action="?<?php echo "mdp=".$admin->hashMdp."&id=".$admin->id ?>" method="GET">
+            <form action="?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST">
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
@@ -226,9 +226,7 @@ if (isset($_REQUEST["submitDelete"])) {
         </div>
         <div id="add-tab" class="tab-content">
             <div class="form-section">
-                <form action="?<?php echo "mdp=".$admin->hashMdp."&id=".$admin->id ?>" method="GET">
-                    <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
-                    <input type="hidden" name="id" value="<?php echo $_REQUEST["id"] ?>">
+                <form action="?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST">
                 <div class="form-group">
                     <label>Nom :</label>
                     <input type="text" name="nom" required class="form-input">

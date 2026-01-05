@@ -17,7 +17,7 @@ if (!empty($email) && !empty($mdp)) {
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_id'] = $admin->id;
             $_SESSION['admin_email'] = $admin->email;
-            header("Location: admin.php?mdp=".$admin->hashMdp."&id=".$admin->id);
+            header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
             exit();
         } else {
             $message = "Email ou mot de passe incorrect.";
