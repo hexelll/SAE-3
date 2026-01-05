@@ -90,14 +90,14 @@
                 "dateRetourPrevue=:datePrevue,".
                 "dateRetourReelle=:dateReelle,".
                 "statutEmprunt=:statut ".
-                "idAdmin=:idAdmin".
+                "idAdmin=:idAdmin ".
                 "where idEmprunt = :id"
             );
             echo var_dump($emprunt);
             $prepared->bindValue(":id",$emprunt->id);
             $prepared->bindValue(":email",$emprunt->email);
             $prepared->bindValue(":motif",$emprunt->motif);
-            $prepared->bindValue(":idAdmin",$emprunt->admin?$emprunt->admin->id:1);
+            $prepared->bindValue(":idAdmin",$emprunt->admin?$emprunt->admin->id:null);
             $prepared->bindValue(":dateEmprunt",$emprunt->date_emprunt);
             $prepared->bindValue(":datePrevue",$emprunt->date_retour_prevue);
             $prepared->bindValue(":dateReelle",$emprunt->date_retour_reelle);
