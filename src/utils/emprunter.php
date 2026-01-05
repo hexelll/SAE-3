@@ -4,8 +4,8 @@
         public $materiel;
         public $quantité;
         public function __construct($emprunt,$materiel,$quantité) {
-            $this->$emprunt = $emprunt;
-            $this->$materiel = $materiel;
+            $this->emprunt = $emprunt;
+            $this->materiel = $materiel;
             $this->quantité = $quantité;
         }
         public static function fromTuple($tuple) {
