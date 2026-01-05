@@ -33,6 +33,8 @@ if (isset($_REQUEST["submitAjouter"])) {
     $empruntable = $_REQUEST["empruntable"]=="empruntable" ? true : false;
     $nvemprunt = new Materiel(null,$nom,$desc,$type,$stockTotal,$stockDispo,$empruntable);
     $matDAO->create($nvemprunt);
+    header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
+    exit();
 }
 
 if (isset($_REQUEST["submitModifier"])) {
@@ -45,12 +47,15 @@ if (isset($_REQUEST["submitModifier"])) {
     $empruntable = $_REQUEST["empruntable"]=="empruntable" ? true : false;
     $emprunt = new Materiel($id,$nom,$desc,$type,$stockTotal,$stockDispo,$empruntable);
     $matDAO->update($emprunt);
+    header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
+    exit();
 }
 
 if (isset($_REQUEST["submitDelete"])) {
     $id = $_REQUEST["id"];
     $matDAO->delete($id);
-    header(" Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
+    header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
+    exit();
 }
 
 ?>
