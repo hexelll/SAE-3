@@ -78,6 +78,6 @@ switch ($action) {
         $matDAO->update($emprunt);
     }
 }
-echo "<script>alert('action effectuée avec succès !'); window.location.href='admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "';</script>";
+//echo "<script>alert('action effectuée avec succès !'); window.location.href='admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "';</script>";
 echo "'admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "'";
 ?>
