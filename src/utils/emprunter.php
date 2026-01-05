@@ -30,6 +30,14 @@
         public function __construct() {
             $this->connexion = Connexion::getConnexion();
         }
+        public function delete() {
+            $prepared = $this->connexion->prepare("delete from Emprunter where idMateriel=:idm and idEmprunt=:ide");
+            $prepared->execute();
+        }
+        public function deleteList($emprunters) {
+            foreach ($emprunters as $emprunter)
+                $emprunter->delete();
+        }
         public function findByMaterielId($id) {
             $prepared = $this->connexion->prepare("select * from Emprunter where idMateriel = :id");
             $prepared->bindValue(":id",$id);

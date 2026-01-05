@@ -131,6 +131,13 @@ if (isset($_REQUEST["submitDelete"])) {
                                     <small>Traité</small>
                                 <?php endif; ?>
                             </td>
+                            <td>
+                                <form action="traitement_admin.php?<?php echo "mdp=".$admin->hashMdp."&idA=".$admin->id ?>" method="POST" style="display:inline;">
+                                    <input type="hidden" name="idEmprunt" value="<?php echo $r->id; ?>">
+                                    <input type="hidden" name="action" value="supprimer">
+                                    <button type="submit" class="btn btn-success">✓</button>
+                                </form>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

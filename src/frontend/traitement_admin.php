@@ -1,9 +1,13 @@
 <?php
 require '../utils/gestionConnexion.php';
 require '../utils/admin.php';
+require '../utils/emprunt.php';
+require '../utils/emprunter.php';
 $pdo = Connexion::getConnexion();
 
 $admDAO = new AdminDAO();
+$empDAO = new EmpruntDAO();
+$emprDAO = new EmprunterDAO();
 function quit() {
     header("Location: ConnexionAdmin.php");
     exit();
@@ -22,22 +26,22 @@ catch(e) {quit();}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idEmprunt = $_POST['idEmprunt'];
     $action = $_POST['action'];
-
-    if ($action == 'valider') {
-        $stmt = $pdo->prepare("UPDATE Emprunt SET statutEmprunt = 'validé' WHERE idEmprunt = ?");
-        $stmt->execute([$idEmprunt]);
-        $stmtGet = $pdo->prepare("SELECT idMateriel, quantité FROM Emprunter WHERE idEmprunt = ?");
-        $stmtGet->execute([$idEmprunt]);
-        $items = $stmtGet->fetchAll();
-
-        foreach ($items as $item) {
-            $updateStock = $pdo->prepare("UPDATE Materiel SET stockDisponible = stockDisponible - ? WHERE idMateriel = ?");
-            $updateStock->execute([$item['quantité'], $item['idMateriel']]);
+    $emprunt = $empDAO->findById($idEmprunt);
+    switch ($action) {
+        case "valider" : {
+            $emprunt->statut_emprunt = "validé";
+            $empDAO->update($emprunt);
+            $items = $emprDAO->findByEmpruntId($idEmprunt);
+            foreach ($items as $item)
+                $item->materiel->stock_disponible -= $item->quantité;
+            break;
+        } case 'refuser': {
+            $emprunt->statut_emprunt = "refusé";
+            break;
+        } case 'supprimer': {
+            $items = $emprDAO->findByEmpruntId($idEmprunt);
+            $emprDAO->deleteList($items);
         }
-
-    } elseif ($action == 'refuser') {
-        $stmt = $pdo->prepare("UPDATE Emprunt SET statutEmprunt = 'refusé' WHERE idEmprunt = ?");
-        $stmt->execute([$idEmprunt]);
     }
 
     header("Location: admin.php?mdp=".$admin->hashMdp."&id=".$admin->id);
