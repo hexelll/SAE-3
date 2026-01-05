@@ -101,6 +101,7 @@ if (isset($_REQUEST["submitDelete"])) {
                             <th>Dates</th>
                             <th>Statut</th>
                             <th>Actions</th>
+                            <th>Supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
