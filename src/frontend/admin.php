@@ -24,40 +24,6 @@ catch(e) {quit();}
 $emprunts = $empDAO->getAllEmprunts();
 $materiels = $matDAO->getAll();
 
-if (isset($_REQUEST["submitAjouter"])) {
-    $nom = $_REQUEST["nom"];
-    $desc = $_REQUEST["description"];
-    $type = $_REQUEST["type"];
-    $stockTotal = $_REQUEST["stockTotal"];
-    $stockDispo = $_REQUEST["stockDispo"];
-    $empruntable = $_REQUEST["empruntable"]=="empruntable" ? true : false;
-    $nvemprunt = new Materiel(null,$nom,$desc,$type,$stockTotal,$stockDispo,$empruntable);
-    $matDAO->create($nvemprunt);
-    header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
-    exit();
-}
-
-if (isset($_REQUEST["submitModifier"])) {
-    $id = $_REQUEST["id"];
-    $nom = $_REQUEST["nom"];
-    $desc = $_REQUEST["description"];
-    $type = $_REQUEST["type"];
-    $stockTotal = $_REQUEST["stockTotal"];
-    $stockDispo = $_REQUEST["stockDispo"];
-    $empruntable = $_REQUEST["empruntable"]=="empruntable" ? true : false;
-    $emprunt = new Materiel($id,$nom,$desc,$type,$stockTotal,$stockDispo,$empruntable);
-    $matDAO->update($emprunt);
-    header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
-    exit();
-}
-
-if (isset($_REQUEST["submitDelete"])) {
-    $id = $_REQUEST["id"];
-    $matDAO->delete($id);
-    header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
-    exit();
-}
-
 ?>
 
 <!DOCTYPE html>

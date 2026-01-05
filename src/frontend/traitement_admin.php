@@ -44,8 +44,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $emprDAO->deleteList($items);
             $empDAO->delete($idEmprunt);
             break;
+        } case 'submitDelete': {
+            $id = $_REQUEST["id"];
+            $matDAO->delete($id);
+            break;
+        } case 'submitAjouter': {
+            $nom = $_REQUEST["nom"];
+            $desc = $_REQUEST["description"];
+            $type = $_REQUEST["type"];
+            $stockTotal = $_REQUEST["stockTotal"];
+            $stockDispo = $_REQUEST["stockDispo"];
+            $empruntable = $_REQUEST["empruntable"]=="empruntable" ? true : false;
+            $nvemprunt = new Materiel(null,$nom,$desc,$type,$stockTotal,$stockDispo,$empruntable);
+            $matDAO->create($nvemprunt);
+            break;
+        } case 'submitModifier': {
+            $id = $_REQUEST["id"];
+            $nom = $_REQUEST["nom"];
+            $desc = $_REQUEST["description"];
+            $type = $_REQUEST["type"];
+            $stockTotal = $_REQUEST["stockTotal"];
+            $stockDispo = $_REQUEST["stockDispo"];
+            $empruntable = $_REQUEST["empruntable"]=="empruntable" ? true : false;
+            $emprunt = new Materiel($id,$nom,$desc,$type,$stockTotal,$stockDispo,$empruntable);
+            $matDAO->update($emprunt);
         }
     }
+    header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
+    exit();
     echo "<script>alert('$action avec succès !'); window.location.href='admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id."';</script>";
 }
 ?>
