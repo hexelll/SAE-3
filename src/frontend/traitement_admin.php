@@ -6,6 +6,7 @@ require '../utils/materiel.php';
 require '../utils/emprunter.php';
 $pdo = Connexion::getConnexion();
 
+$matDAO = new MaterielDAO();
 $admDAO = new AdminDAO();
 $empDAO = new EmpruntDAO();
 $emprDAO = new EmprunterDAO();
