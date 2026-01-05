@@ -129,7 +129,7 @@ if (isset($_REQUEST["submitDelete"])) {
                                     <button type="submit" class="btn btn-danger">✗</button>
                                 </form>
                                 <?php else: ?>
-                                    <small>Traité</small>
+                                    Traité
                                 <?php endif; ?>
                             </td>
                             <td>
