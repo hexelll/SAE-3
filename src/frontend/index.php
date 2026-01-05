@@ -20,7 +20,7 @@
                 <h2>Client</h2>
                 <p>Rechercher et réserver du matériel</p>
             </a>
-            <a href="connexionAdmin.php" class="role-card">
+            <a href="ConnexionAdmin.php" class="role-card">
                 <div class="role-icon">⚙️</div>
                 <h2>Administrateur</h2>
                 <p>Gérer les réservations et le matériel</p>
