@@ -65,8 +65,8 @@ switch ($action) {
         $stockTotal = $_REQUEST["stockTotal"];
         $stockDispo = $_REQUEST["stockDispo"];
         $empruntable = $_REQUEST["empruntable"] == "empruntable" ? true : false;
-        $nvemprunt = new Materiel(null, $nom, $desc, $type, $stockTotal, $stockDispo, $empruntable);
-        $matDAO->create($nvemprunt);
+        $nvmat = new Materiel(null, $nom, $desc, $type, $stockTotal, $stockDispo, $empruntable);
+        $matDAO->create($nvmat);
         break;
     }
     case 'submitModifier': {
@@ -77,8 +77,9 @@ switch ($action) {
         $stockTotal = $_REQUEST["stockTotal"];
         $stockDispo = $_REQUEST["stockDispo"];
         $empruntable = $_REQUEST["empruntable"] == "empruntable" ? true : false;
-        $emprunt = new Materiel($id, $nom, $desc, $type, $stockTotal, $stockDispo, $empruntable);
-        $matDAO->update($emprunt);
+        $mat = new Materiel($id, $nom, $desc, $type, $stockTotal, $stockDispo, $empruntable);
+        $matDAO->update($mat);
+        break;
     }
 }
 echo "<script>alert('action effectuée avec succès !'); window.location.href='admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "';</script>";
