@@ -40,9 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $emprunt->statut_emprunt = "refusé";
             break;
         } case 'supprimer': {
-            $empDAO->delete($idEmprunt);
             $items = $emprDAO->findByEmpruntId($idEmprunt);
             $emprDAO->deleteList($items);
+            $empDAO->delete($idEmprunt);
             break;
         }
     }
