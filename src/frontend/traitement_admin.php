@@ -71,8 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $matDAO->update($emprunt);
         }
     }
-    header("Location: admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id);
-    exit();
+    
     echo "<script>alert('$action avec succès !'); window.location.href='admin.php?mdp=".$admin->hashMdp."&idA=".$admin->id."';</script>";
 }
 ?>
