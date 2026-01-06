@@ -81,7 +81,7 @@ switch ($action) {
         $type = $_REQUEST["type"];
         $stockTotal = $_REQUEST["stockTotal"];
         $stockDispo = $_REQUEST["stockDispo"];
-        $empruntable = $_REQUEST["empruntable"] == "empruntable" ? true : false;
+        $empruntable = isset($_REQUEST["empruntable"]);
         $mat = new Materiel($id, $nom, $desc, $type, $stockTotal, $stockDispo, $empruntable);
         $matDAO->update($mat);
         break;
