@@ -49,6 +49,11 @@ switch ($action) {
     }
     case 'supprimer': {
         $items = $emprDAO->findByEmpruntId($idEmprunt);
+        if($emprunt->statut_emprunt == 'en cours') {
+            foreach ($items as $item)
+                $item->materiel->stock_disponible += $item->quantité;
+            $matDAO->update($item->materiel);
+        }
         $emprDAO->deleteList($items);
         $empDAO->delete($idEmprunt);
         break;

@@ -40,6 +40,39 @@ $materiels = $matDAO->getAll();
             document.getElementById(tabId + '-tab').style.display = 'block';
             event.target.classList.add('active');
         }
+        const materiels = {
+            <?php
+                foreach($materiels as $k=>$m) {
+                    echo "\"".$m->id."\":{".
+                    "\"nom\":\"".$m->nom."\",".
+                    "\"desc\":\"".$m->description."\",".
+                    "\"type\":\"".$m->type."\",".
+                    "\"total\":".$m->stock_total.",".
+                    "\"dispo\":".$m->stock_disponible.",".
+                    "\"empruntable\":\"".$m->empruntable."\"}";
+                    if ($k!=count($materiels)-1)
+                        echo ",";
+                }
+            ?>
+        }
+        const idselect = document.getElementById("mod_id")
+        const nomtf = document.getElementById("mod_nom")
+        const descta =document.getElementById("mod_desc")
+        const typetf = document.getElementById("mod_type")
+        const totalnf = document.getElementById("mod_total")
+        const disponf = document.getElementById("dispo")
+        const ouicb = document.getElementById("mod_empruntable")
+        const noncb = document.getElementById("mod_nonempruntable")
+        idselect.addEventListener("onchange",()=>{
+            const mat = materiels[idselect.getAttribute("value")]
+            nomtf.setAttribute("value",mat["nom"])
+            descta.setAttribute("value",mat["desc"])
+            typetf.setAttribute("value",mat["type"])
+            totalnf.setAttribute("value",mat["total"])
+            disponf.setAttribute("value",mat["dispo"])
+            ouicb.setAttribute("value",mat["empruntable"])
+            noncb.setAttribute("value",!mat["empruntable"])
+        })
     </script>
     <style>
         .tab-content { display: none; }
@@ -160,7 +193,7 @@ $materiels = $matDAO->getAll();
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
-                    <select name="id" class="form-select">
+                    <select id="mod_id" name="id" class="form-select">
                         <?php
                             foreach($materiels as $m) {
                                 echo "<option value=\"".$m->id."\">".$m->nom." : ".$m->id."</option>";
@@ -170,30 +203,30 @@ $materiels = $matDAO->getAll();
                 </div>
                 <div class="form-group">
                     <label>Nom :</label>
-                    <input type="text" name="nom" required class="form-input">
+                    <input id="mod_nom" type="text" name="nom" required class="form-input">
                 </div>
                 <div class="form-group">
                     <label>Description :</label>
-                    <textarea name="description" required class="form-input" rows="2"></textarea>
+                    <textarea id="mod_desc" name="description" required class="form-input" rows="2"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Type :</label>
-                    <input type="text" name="type" required class="form-input">
+                    <input id="mod_type" type="text" name="type" required class="form-input">
                 </div>
                 <div class="form-group">
                     <label>Stock Total :</label>
-                    <input type="text" name="stockTotal" required class="form-input">
+                    <input id="mod_total" type="text" name="stockTotal" required class="form-input">
                 </div>
                 <div class="form-group">
                     <label>Stock Dispo :</label>
-                    <input type="text" name="stockDispo" required class="form-input">
+                    <input id="mod_dispo" type="text" name="stockDispo" required class="form-input">
                 </div>
                 <div class="form-group">
                     <label>empruntable :</label>
                     oui 
-                    <input type="radio" checked name="empruntable">
+                    <input id="mod_empruntable" type="radio" checked name="empruntable">
                     non 
-                    <input type="radio" name="empruntable">
+                    <input id="mod_nonempruntable" type="radio" name="empruntable">
                 </div>
                 <button type="submit" name="submitModifier" class="submit-btn">Modifier le materiel</button>
             </div>
