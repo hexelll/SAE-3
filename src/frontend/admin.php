@@ -40,7 +40,7 @@ $materiels = $matDAO->getAll();
             document.getElementById(tabId + '-tab').style.display = 'block';
             event.target.classList.add('active');
         }
-        window.document.onload = function(e){ 
+        //window.document.onload = function(e){ 
         const materiels = {
             <?php
                 foreach($materiels as $k=>$m) {
@@ -74,7 +74,7 @@ $materiels = $matDAO->getAll();
             ouicb.setAttribute("checked","");
             noncb.removeAttribute("checked");
         });
-        }
+        //}
     </script>
     <style>
         .tab-content { display: none; }
