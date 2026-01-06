@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $matDAO->update($mat);
             if ($qte > 0) {
                 $emprunter = new Emprunter($nvemprunt,$mat,$qte);
+                echo var_dump($emprunter);
                 $emprDAO->create($emprunter);
             }
         }
