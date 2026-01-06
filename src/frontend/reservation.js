@@ -33,7 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             items.forEach(function(item) {
                 const name = item.querySelector('h3').textContent.toLowerCase();
-                
+                if (name.includes(term)) {
+                    item.style.display = 'grid'; 
+                } else {
+                    item.style.display = 'none';
+                }
             });
         });
     }
