@@ -69,7 +69,7 @@ $materiels = $matDAO->getAll();
             console.log(materiels);
             const mat = materiels[idselect.value];
             nomtf.setAttribute("value",mat["nom"]);
-            descta..value = mat["desc"];
+            descta.value = mat["desc"];
             typetf.setAttribute("value",mat["type"]);
             totalnf.setAttribute("value",mat["total"]);
             disponf.setAttribute("value",mat["dispo"]);
