@@ -61,6 +61,7 @@
             $prepared->bindValue(":idEmprunt",(int)$emprunter->emprunt->id);
             $prepared->bindValue(":idMateriel",(int)$emprunter->materiel->id);
             $prepared->bindValue(":quantité",(int)$emprunter->quantité);
+            echo var_dump($emprunter);
             $prepared->execute();
         }
         public function update(Emprunter $emprunter) {
