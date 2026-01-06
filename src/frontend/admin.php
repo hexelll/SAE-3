@@ -65,6 +65,8 @@ $materiels = $matDAO->getAll();
             const disponf = document.getElementById("dispo");
             const ouicb = document.getElementById("mod_empruntable");
             const noncb = document.getElementById("mod_nonempruntable");
+            console.log(idselect.getAttribute("value"));
+            console.log(materiels);
             const mat = materiels[idselect.getAttribute("value")];
             nomtf.setAttribute("value",mat["nom"]);
             descta.setAttribute("value",mat["desc"]);
