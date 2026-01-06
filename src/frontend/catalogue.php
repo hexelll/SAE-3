@@ -21,7 +21,7 @@ $materiels = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <style>
        
         .info-tooltip {
-            font: normal;
+            font-family: monospace;
             display: inline-block;
             margin-left: 8px;
             color: #666;
