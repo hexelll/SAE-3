@@ -56,6 +56,7 @@ $materiels = $matDAO->getAll();
                 }
             ?>
         };
+        window.onload = (e)=> {updateDisplay();}
         function updateDisplay(){
             const idselect = document.getElementById("mod_id");
             const nomtf = document.getElementById("mod_nom");
@@ -73,8 +74,13 @@ $materiels = $matDAO->getAll();
             typetf.setAttribute("value",mat["type"]);
             totalnf.setAttribute("value",mat["total"]);
             disponf.setAttribute("value",mat["dispo"]);
-            ouicb.setAttribute("checked","");
-            noncb.removeAttribute("checked");
+            if (mat["empruntable"] == "1") {
+                ouicb.setAttribute("checked","");
+                noncb.removeAttribute("checked");
+            }else {
+                noncb.setAttribute("checked","");
+                ouicb.removeAttribute("checked");
+            }
         }
         //}
     </script>
