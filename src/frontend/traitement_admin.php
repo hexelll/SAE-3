@@ -36,13 +36,14 @@ switch ($action) {
     case "valider": {
         $emprunt->statut_emprunt = "validé";
         $empDAO->update($emprunt);
-        $items = $emprDAO->findByEmpruntId($idEmprunt);
-        foreach ($items as $item)
-            $item->materiel->stock_disponible -= $item->quantité;
         break;
     }
     case 'refuser': {
         $emprunt->statut_emprunt = "refusé";
+        $items = $emprDAO->findByEmpruntId($idEmprunt);
+        foreach ($items as $item)
+            $item->materiel->stock_disponible += $item->quantité;
+            $matDAO->update($item->materiel);
         $empDAO->update($emprunt);
         break;
     }

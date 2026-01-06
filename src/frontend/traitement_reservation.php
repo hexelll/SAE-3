@@ -1,44 +1,37 @@
 <?php
 require '../utils/gestionConnexion.php';
+require '../utils/emprunt.php';
+require '../utils/materiel.php';
+require '../utils/emprunter.php';
 $pdo = Connexion::getConnexion();
+$empDAO = new EmpruntDAO();
+$matDAO = new MaterielDAO();
+$emprDAO = new EmprunterDAO();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $motif = $_POST['motif'];
-    $date_debut = $_POST['date_debut'];
-    $date_fin = $_POST['date_fin'];
+    $email = $_REQUEST['email'];
+    $motif = $_REQUEST['motif'];
+    $date_debut = $_REQUEST['date_debut'];
+    $date_fin = $_REQUEST['date_fin'];
     
     
-    $materiels_choisis = isset($_POST['materiel']) ? $_POST['materiel'] : [];
-    $quantites = $_POST['quantite'];
+    $materiels_choisis = isset($_REQUEST['materiel']) ? $_REQUEST['materiel'] : [];
+    $quantites = $_REQUEST['quantite'];
 
     if (count($materiels_choisis) > 0) {
-        try {
-            $pdo->beginTransaction();
-
-            $stmt = $pdo->prepare("INSERT INTO Emprunt (emailEmprunt, motifEmprunt, dateEmprunt, dateRetourPrevue, statutEmprunt) VALUES (?, ?, ?, ?, 'en cours')");
-            $stmt->execute([$email, $motif, $date_debut, $date_fin]);
-            
-            $idEmprunt = $pdo->lastInsertId();
-
-            
-            $stmtInsert = $pdo->prepare("INSERT INTO Emprunter (idEmprunt, idMateriel, quantité) VALUES (?, ?, ?)");
-            
-            foreach ($materiels_choisis as $idMateriel => $on) {
-                $qte = $quantites[$idMateriel];
-                if ($qte > 0) {
-                    $stmtInsert->execute([$idEmprunt, $idMateriel, $qte]);
-                }
+        $nvemprunt = new Emprunt(null,$email, $motif, null,$date_debut, $date_fin,null,"en cours");
+        $empDAO->create($nvemprunt);
+        foreach ($materiels_choisis as $idMateriel => $on) {
+            $qte = $quantites[$idMateriel];
+            $mat = $matDAO->findById($idMateriel);
+            $mat->stock_disponible -= $qte;
+            $matDAO->update($mat);
+            if ($qte > 0) {
+                $emprunter = new Emprunter($empDAO->findById($idEmprunt),$mat,$qte);
+                $emprDAO->create($emprunter);
             }
-
-            $pdo->commit();
-
-            echo "<script>alert('Réservation enregistrée avec succès !'); window.location.href='index.php';</script>";
-
-        } catch (Exception $e) {
-            $pdo->rollBack();
-            die("Erreur lors de la réservation : " . $e->getMessage());
         }
+        echo "<script>alert('Réservation enregistrée avec succès !'); window.location.href='index.php';</script>";
     } else {
         echo "Aucun matériel sélectionné.";
     }

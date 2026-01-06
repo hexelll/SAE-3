@@ -70,6 +70,7 @@ $materiels = $matDAO->getAll();
                             <th>ID</th>
                             <th>Email</th>
                             <th>Matériel</th>
+                            <th>Motif</th>
                             <th>Dates</th>
                             <th>Statut</th>
                             <th>Actions</th>
@@ -81,6 +82,7 @@ $materiels = $matDAO->getAll();
                         <tr>
                             <td>#<?php echo $r->id; ?></td>
                             <td><?php echo htmlspecialchars($r->email); ?></td>
+                            <td></td>
                             <td><?php echo htmlspecialchars($r->motif); ?></td>
                             <td><?php echo $r->date_emprunt; ?> au <?php echo $r->date_retour_prevue; ?></td>
                             <td>
