@@ -57,11 +57,11 @@
             return Emprunter::fromTuples($tuples);
         }
         public function create(Emprunter $emprunter) {
-            $prepared = $this->connexion->prepare("insert into Emprunter values(:idEmprunt,:idMateriel,:quantité)");
+            $prepared = $this->connexion->prepare("insert into Emprunter values(:idEmprunt,:idMateriel,:quantite)");
             $prepared->bindValue(":idEmprunt",(int)$emprunter->emprunt->id);
             $prepared->bindValue(":idMateriel",(int)$emprunter->materiel->id);
-            $prepared->bindValue(":quantité",(int)$emprunter->quantité);
-            echo var_dump($emprunter);
+            $prepared->bindValue(":quantite",(int)$emprunter->quantité);
+            echo $emprunter->emprunt->id." ".$emprunter->materiel->id." ".$emprunter->quantité;
             $prepared->execute();
         }
         public function update(Emprunter $emprunter) {
