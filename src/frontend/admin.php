@@ -56,7 +56,10 @@ $materiels = $matDAO->getAll();
                 }
             ?>
         };
-        window.onload = (e)=> {updateDisplay();}
+        window.onload = (e)=> {
+            updateDisplay();
+            showTab("<?php if(isset($_REQUEST["tab"])) echo $_REQUEST["tab"]; else echo "emprunts";  ?>");
+        }
         function updateDisplay(){
             const idselect = document.getElementById("mod_id");
             const nomtf = document.getElementById("mod_nom");
