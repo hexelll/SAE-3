@@ -75,11 +75,13 @@ $materiels = $matDAO->getAll();
             totalnf.setAttribute("value",mat["total"]);
             disponf.setAttribute("value",mat["dispo"]);
             if (mat["empruntable"] == "1") {
-                ouicb.setAttribute("checked","empruntable");
+                ouicb.setAttribute("checked","");
+                ouicb.value = "empruntable"
                 noncb.removeAttribute("checked");
             }else {
                 noncb.setAttribute("checked","");
                 ouicb.removeAttribute("checked");
+                ouicb.removeAttribute("value");
             }
         }
         //}
