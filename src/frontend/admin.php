@@ -116,7 +116,7 @@ $materiels = $matDAO->getAll();
                                     <input type="hidden" name="action" value="supprimer">
                                     <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
                                     <input type="hidden" name="idA" value="<?php echo $_REQUEST["idA"] ?>">
-                                    <button type="submit" class="btn btn-danger">x</button>
+                                    <button type="submit" class="btn btn-danger">🗑</button>
                                 </form>
                             </td>
                         </tr>
