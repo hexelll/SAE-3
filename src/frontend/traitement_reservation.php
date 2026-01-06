@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mat->stock_disponible -= $qte;
             $matDAO->update($mat);
             if ($qte > 0) {
-                $emprunter = new Emprunter($empDAO->findById($idEmprunt),$mat,$qte);
+                $emprunter = new Emprunter($nvemprunt,$mat,$qte);
                 $emprDAO->create($emprunter);
             }
         }
