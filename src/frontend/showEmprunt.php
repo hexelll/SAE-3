@@ -22,7 +22,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <a href="index.php" class="back-link">← Retour</a>
+            <a href="admin.php?mdp=<?php echo $_REQUEST["mdp"] ?>&idA=<?php echo $_REQUEST["idA"] ?>" class="back-link">← Retour</a>
             <h1>Tableau de bord Administrateur</h1>
         </div>
         <div class="tab-content active">
