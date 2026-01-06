@@ -58,9 +58,9 @@
         }
         public function create(Emprunter $emprunter) {
             $prepared = $this->connexion->prepare("insert into Emprunter values(:idEmprunt,:idMateriel,:quantité)");
-            $prepared->bindValue(":idEmprunt",$emprunter->emprunt->id);
-            $prepared->bindValue(":idMateriel",$emprunter->materiel->id);
-            $prepared->bindValue(":quantité",$emprunter->quantité);
+            $prepared->bindValue(":idEmprunt",(int)$emprunter->emprunt->id);
+            $prepared->bindValue(":idMateriel",(int)$emprunter->materiel->id);
+            $prepared->bindValue(":quantité",(int)$emprunter->quantité);
             $prepared->execute();
         }
         public function update(Emprunter $emprunter) {
