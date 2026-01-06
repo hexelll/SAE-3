@@ -62,7 +62,7 @@ $materiels = $matDAO->getAll();
             const descta =document.getElementById("mod_desc");
             const typetf = document.getElementById("mod_type");
             const totalnf = document.getElementById("mod_total");
-            const disponf = document.getElementById("dispo");
+            const disponf = document.getElementById("mod_dispo");
             const ouicb = document.getElementById("mod_empruntable");
             const noncb = document.getElementById("mod_nonempruntable");
             console.log(idselect.value);
