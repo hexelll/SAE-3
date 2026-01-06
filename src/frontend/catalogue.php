@@ -39,7 +39,7 @@ $materiels = $stmt->fetchAll(PDO::FETCH_ASSOC);
             color: #fff;
             padding: 8px 12px;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.4rem;
             width: 200px;
             z-index: 100;
             text-align: center;
