@@ -2,6 +2,7 @@
     require_once "../utils/gestionConnexion.php";
     require_once "../utils/materiel.php";
     require_once "../utils/emprunt.php";
+    require_once "../utils/admin.php";
     require_once "../utils/emprunter.php";
 
     $items = (new EmprunterDAO())->findByEmpruntId($_REQUEST["idEmprunt"]);
