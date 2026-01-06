@@ -1,6 +1,6 @@
 <?php
     require_once "../utils/gestionConnexion.php";
-    require_once "../utils/material.php";
+    require_once "../utils/materiel.php";
     require_once "../utils/emprunt.php";
     require_once "../utils/emprunter.php";
 
