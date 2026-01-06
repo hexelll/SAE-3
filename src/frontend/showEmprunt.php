@@ -8,7 +8,7 @@
     $items = (new EmprunterDAO())->findByEmpruntId($_REQUEST["idEmprunt"]);
     $materiels = [];
     foreach($items as $item) {
-        $materiels[] = $item->materiel;
+        $materiels[] = [$item->materiel,$item->quantité];
     }
 ?>
 
@@ -33,17 +33,15 @@
                         <tr>
                             <th>Nom</th>
                             <th>Catégorie</th>
-                            <th>Total</th>
-                            <th>Dispo</th>
+                            <th>Quantité</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($materiels as $m): ?>
+                        <?php foreach ($materiels as $t): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($m->nom); ?></td>
-                            <td><?php echo htmlspecialchars($m->type); ?></td>
-                            <td><?php echo $m->stock_total; ?></td>
-                            <td><?php echo $m->stock_disponible; ?></td>
+                            <td><?php echo htmlspecialchars($t[0]->nom); ?></td>
+                            <td><?php echo htmlspecialchars($t[0]->type); ?></td>
+                            <td><?php echo $t[1]; ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
