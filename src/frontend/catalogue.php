@@ -104,7 +104,7 @@ $materiels = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="material-info">
                                         <h3>
                                             <?php echo htmlspecialchars($m['nomMateriel']); ?>
-                                            <i class="info-tooltip" 
+                                            <i class="fa-question-circle info-tooltip" 
                                                data-tooltip="<?php echo htmlspecialchars($m['descriptionMateriel']); ?>"></i>
                                         </h3>
                                         <p>Type: <?php echo htmlspecialchars($m['typeMateriel']); ?></p>
