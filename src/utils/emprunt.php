@@ -80,6 +80,9 @@
             $prepared->bindValue(":dateReelle",$emprunt->date_retour_reelle);
             $prepared->bindValue(":statut",$emprunt->statut_emprunt);
             $prepared->execute();
+            $prepared = $this->connexion->prepare("select max(idEmprunt) as id fromEmprunt");
+            $prepared->execute();
+            $emprunt->id = $prepared->fetch()["id"];
         }
         public function update($emprunt) {
             $prepared = $this->connexion->prepare(

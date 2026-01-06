@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (count($materiels_choisis) > 0) {
         $nvemprunt = new Emprunt(null,$email, $motif, null,$date_debut, $date_fin,null,"en cours");
         $empDAO->create($nvemprunt);
+        $idEmprunt = $nvemprunt->id;
         foreach ($materiels_choisis as $idMateriel => $on) {
             $qte = $quantites[$idMateriel];
             $mat = $matDAO->findById($idMateriel);
