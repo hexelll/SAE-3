@@ -130,7 +130,16 @@ $materiels = $matDAO->getAll();
                         <tr>
                             <td>#<?php echo $r->id; ?></td>
                             <td><?php echo htmlspecialchars($r->email); ?></td>
-                            <td></td>
+                            <td>
+                                <form action="showEmprunt.php">
+                                    <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
+                                    <input type="hidden" name="idA" value="<?php echo $_REQUEST["idA"] ?>">
+                                    <input type="hidden" name="idEmprunt" value="<?php echo $r->id ?>">
+                                    <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square-fill" viewBox="0 0 16 16">
+  <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707"/>
+</svg></button>
+                                </form>
+                            </td>
                             <td><?php echo htmlspecialchars($r->motif); ?></td>
                             <td><?php echo $r->date_emprunt; ?> au <?php echo $r->date_retour_prevue; ?></td>
                             <td>
