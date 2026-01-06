@@ -64,7 +64,7 @@ $materiels = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="index.php" class="back-link">&larr; Retour à l'accueil</a>
             <h2 style="color:white; text-align:center;">Réserver du matériel</h2>
         </header>
-
+        <br>
         <form action="traitement_reservation.php" method="POST" class="reservation-form">
             <div class="form-section">
                 <h2>Vos informations</h2>
