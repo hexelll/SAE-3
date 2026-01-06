@@ -67,7 +67,7 @@ $materiels = $matDAO->getAll();
             const noncb = document.getElementById("mod_nonempruntable");
             console.log(idselect.value);
             console.log(materiels);
-            const mat = materiels[idselect.getAttribute("value")];
+            const mat = materiels[idselect.value];
             nomtf.setAttribute("value",mat["nom"]);
             descta.setAttribute("value",mat["desc"]);
             typetf.setAttribute("value",mat["type"]);
