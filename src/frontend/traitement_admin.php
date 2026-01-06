@@ -32,6 +32,7 @@ if (isset($_REQUEST['idEmprunt'])) {
     $emprunt = $empDAO->findById($idEmprunt);
 }
 $action = $_REQUEST['action'];
+$tab = "emprunts";
 switch ($action) {
     case "valider": {
         $emprunt->statut_emprunt = "validé";
@@ -61,6 +62,7 @@ switch ($action) {
     case 'submitDelete': {
         $id = $_REQUEST["id"];
         $matDAO->delete($id);
+        $tab = "del";
         break;
     }
     case 'submitAjouter': {
@@ -72,6 +74,7 @@ switch ($action) {
         $empruntable = $_REQUEST["empruntable"] == "empruntable" ? true : false;
         $nvmat = new Materiel(null, $nom, $desc, $type, $stockTotal, $stockDispo, $empruntable);
         $matDAO->create($nvmat);
+        $tab = "add";
         break;
     }
     case 'submitModifier': {
@@ -84,9 +87,10 @@ switch ($action) {
         $empruntable = isset($_REQUEST["empruntable"]);
         $mat = new Materiel($id, $nom, $desc, $type, $stockTotal, $stockDispo, $empruntable);
         $matDAO->update($mat);
+        $tab = "modify";
         break;
     }
 }
-echo "<script>alert('action effectuée avec succès !'); window.location.href='admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "';</script>";
+echo "<script>alert('action effectuée avec succès !'); window.location.href='admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "&tab=".$tab."';</script>";
 //echo "'admin.php?mdp=" . $_REQUEST["mdp"] . "&idA=" . $_REQUEST["idA"] . "'";
 ?>
