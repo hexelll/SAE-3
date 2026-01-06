@@ -21,6 +21,7 @@ $materiels = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <style>
        
         .info-tooltip {
+            font: normal;
             display: inline-block;
             margin-left: 8px;
             color: #666;
@@ -104,7 +105,7 @@ $materiels = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="material-info">
                                         <h3>
                                             <?php echo htmlspecialchars($m['nomMateriel']); ?>
-                                            <i class="fa-question-circle info-tooltip" 
+                                            <i class="fas fa-question-circle info-tooltip" 
                                                data-tooltip="<?php echo htmlspecialchars($m['descriptionMateriel']); ?>"></i>
                                         </h3>
                                         <p>Type: <?php echo htmlspecialchars($m['typeMateriel']); ?></p>
