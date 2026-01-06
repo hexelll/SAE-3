@@ -64,15 +64,15 @@ $materiels = $matDAO->getAll();
         const disponf = document.getElementById("dispo")
         const ouicb = document.getElementById("mod_empruntable")
         const noncb = document.getElementById("mod_nonempruntable")
-        idselect.addEventListener("onchange",()=>{
+        idselect.addEventListener("change",()=>{
             const mat = materiels[idselect.getAttribute("value")]
             nomtf.setAttribute("value",mat["nom"])
             descta.setAttribute("value",mat["desc"])
             typetf.setAttribute("value",mat["type"])
             totalnf.setAttribute("value",mat["total"])
             disponf.setAttribute("value",mat["dispo"])
-            ouicb.setAttribute("value",mat["empruntable"])
-            noncb.setAttribute("value",!mat["empruntable"])
+            ouicb.setAttribute("checked","")
+            noncb.removeAttribute("checked")
         })
         }
     </script>
