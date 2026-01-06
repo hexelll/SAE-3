@@ -56,15 +56,15 @@ $materiels = $matDAO->getAll();
                 }
             ?>
         };
-        const idselect = document.getElementById("mod_id");
-        const nomtf = document.getElementById("mod_nom");
-        const descta =document.getElementById("mod_desc");
-        const typetf = document.getElementById("mod_type");
-        const totalnf = document.getElementById("mod_total");
-        const disponf = document.getElementById("dispo");
-        const ouicb = document.getElementById("mod_empruntable");
-        const noncb = document.getElementById("mod_nonempruntable");
-        idselect.addEventListener("change",()=>{
+        function updateDisplay(){
+            const idselect = document.getElementById("mod_id");
+            const nomtf = document.getElementById("mod_nom");
+            const descta =document.getElementById("mod_desc");
+            const typetf = document.getElementById("mod_type");
+            const totalnf = document.getElementById("mod_total");
+            const disponf = document.getElementById("dispo");
+            const ouicb = document.getElementById("mod_empruntable");
+            const noncb = document.getElementById("mod_nonempruntable");
             const mat = materiels[idselect.getAttribute("value")];
             nomtf.setAttribute("value",mat["nom"]);
             descta.setAttribute("value",mat["desc"]);
@@ -73,7 +73,7 @@ $materiels = $matDAO->getAll();
             disponf.setAttribute("value",mat["dispo"]);
             ouicb.setAttribute("checked","");
             noncb.removeAttribute("checked");
-        });
+        }
         //}
     </script>
     <style>
@@ -195,7 +195,7 @@ $materiels = $matDAO->getAll();
             <div class="form-section">
                 <div class="form-group">
                     <label>materiel :</label>
-                    <select id="mod_id" name="id" class="form-select">
+                    <select id="mod_id" name="id" class="form-select" onchange="updateDisplay()">
                         <?php
                             foreach($materiels as $m) {
                                 echo "<option value=\"".$m->id."\">".$m->nom." : ".$m->id."</option>";
