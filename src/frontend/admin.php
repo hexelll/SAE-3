@@ -152,6 +152,7 @@ $materiels = $matDAO->getAll();
             </div>
         </div>
         <div id="modify-tab" class="tab-content">
+            <h2>Modifier du materiel</h2>
             <form action="traitement_admin.php" method="POST">
                 <input type="hidden" name="action" value="submitModifier">
                 <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
@@ -199,6 +200,7 @@ $materiels = $matDAO->getAll();
             </form>
         </div>
         <div id="del-tab" class="tab-content">
+            <h2>Supprimer du materiel</h2>
             <form action="traitement_admin.php" method="POST">
                 <input type="hidden" name="action" value="submitDelete">
                 <input type="hidden" name="mdp" value="<?php echo $_REQUEST["mdp"] ?>">
@@ -219,6 +221,7 @@ $materiels = $matDAO->getAll();
             </form>
         </div>
         <div id="add-tab" class="tab-content">
+            <h2>Ajouter du materiel</h2>
             <div class="form-section">
                 <form action="traitement_admin.php" method="POST">
                     <input type="hidden" name="action" value="submitAjouter">
