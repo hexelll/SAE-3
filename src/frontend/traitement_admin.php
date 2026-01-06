@@ -43,6 +43,7 @@ switch ($action) {
     }
     case 'refuser': {
         $emprunt->statut_emprunt = "refusé";
+        $emprDAO->update($emprunt);
         break;
     }
     case 'supprimer': {
