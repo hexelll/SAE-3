@@ -55,25 +55,25 @@ $materiels = $matDAO->getAll();
                         echo ",";
                 }
             ?>
-        }
-        const idselect = document.getElementById("mod_id")
-        const nomtf = document.getElementById("mod_nom")
-        const descta =document.getElementById("mod_desc")
-        const typetf = document.getElementById("mod_type")
-        const totalnf = document.getElementById("mod_total")
-        const disponf = document.getElementById("dispo")
-        const ouicb = document.getElementById("mod_empruntable")
-        const noncb = document.getElementById("mod_nonempruntable")
+        };
+        const idselect = document.getElementById("mod_id");
+        const nomtf = document.getElementById("mod_nom");
+        const descta =document.getElementById("mod_desc");
+        const typetf = document.getElementById("mod_type");
+        const totalnf = document.getElementById("mod_total");
+        const disponf = document.getElementById("dispo");
+        const ouicb = document.getElementById("mod_empruntable");
+        const noncb = document.getElementById("mod_nonempruntable");
         idselect.addEventListener("change",()=>{
-            const mat = materiels[idselect.getAttribute("value")]
-            nomtf.setAttribute("value",mat["nom"])
-            descta.setAttribute("value",mat["desc"])
-            typetf.setAttribute("value",mat["type"])
-            totalnf.setAttribute("value",mat["total"])
-            disponf.setAttribute("value",mat["dispo"])
-            ouicb.setAttribute("checked","")
-            noncb.removeAttribute("checked")
-        })
+            const mat = materiels[idselect.getAttribute("value")];
+            nomtf.setAttribute("value",mat["nom"]);
+            descta.setAttribute("value",mat["desc"]);
+            typetf.setAttribute("value",mat["type"]);
+            totalnf.setAttribute("value",mat["total"]);
+            disponf.setAttribute("value",mat["dispo"]);
+            ouicb.setAttribute("checked","");
+            noncb.removeAttribute("checked");
+        });
         }
     </script>
     <style>
