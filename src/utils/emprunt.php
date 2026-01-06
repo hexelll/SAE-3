@@ -71,7 +71,7 @@
             return Emprunt::fromTuples($tuples);
         }
         public function create(Emprunt $emprunt) {
-            $prepared = $this->connexion->prepare("insert into Emprunt values(:motif,:email,:dateEmprunt,:datePrevue,:dateReelle,:statut,:idAdmin)");
+            $prepared = $this->connexion->prepare("insert into Emprunt(motifEmprunt,emailEmprunt,dateEmprunt,dateRetourPrevue,dateRetourReelle,statutEmprunt,idAdmin) values(:motif,:email,:dateEmprunt,:datePrevue,:dateReelle,:statut,:idAdmin)");
             $prepared->bindValue(":email",$emprunt->email);
             $prepared->bindValue(":motif",$emprunt->motif);
             $prepared->bindValue(":idAdmin",$emprunt->admin?$emprunt->admin->id:null);
