@@ -21,7 +21,6 @@ $materiels = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <style>
        
         .info-tooltip {
-            font-family: monospace;
             display: inline-block;
             margin-left: 8px;
             color: #666;
@@ -30,6 +29,7 @@ $materiels = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
         .info-tooltip:hover::after {
+            font-family: monospace;
             content: attr(data-tooltip);
             position: absolute;
             bottom: 120%;
