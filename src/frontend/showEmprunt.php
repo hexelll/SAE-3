@@ -25,7 +25,7 @@
             <a href="index.php" class="back-link">← Retour</a>
             <h1>Tableau de bord Administrateur</h1>
         </div>
-        <div class="tab-content"></div>
+        <div>
             <h2>Composants</h2>
             <div class="table-container">
                 <table class="admin-table">
@@ -50,5 +50,6 @@
                 </table>
             </div>
         </div>
+    </div>
 </body>
 </html>
