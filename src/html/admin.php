@@ -8,7 +8,7 @@ $matDAO = new MaterielDAO();
 $empDAO = new EmpruntDAO();
 $admDAO = new AdminDAO();
 function quit() {
-    header("Location: ConnexionAdmin.php");
+    header("Location: connexionAdmin.php");
     exit();
 }
 try {

@@ -12,7 +12,7 @@ $empDAO = new EmpruntDAO();
 $emprDAO = new EmprunterDAO();
 function quit()
 {
-    header("Location: ConnexionAdmin.php");
+    header("Location: connexionAdmin.php");
     exit();
 }
 try {
