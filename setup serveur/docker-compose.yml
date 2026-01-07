@@ -1,0 +1,48 @@
+services:
+  web:
+    build: .
+    container_name: fablab
+    ports:
+      - "80:80"
+    volumes:
+      - ../src/frontend:/var/www/html
+      - configs/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    depends_on:
+      - db
+    networks:
+      - ma-stack
+  db:
+    image: mariadb:lts
+    container_name: ma_bdd
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pass4root
+      MYSQL_DATABASE: bdfablab
+      MYSQL_USER: "adminer"
+      MYSQL_PASSWORD: "Isanum64!"
+    volumes:
+      - db_data1:/var/lib/mysql
+    networks:
+      - ma-stack
+    ports:
+      - "9100:3306"
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: mon_pma
+    #volumes:
+    #  - /root/configs/pma:/etc/phpmyadmin/
+    environment:
+      PMA_HOST: db
+    #  PMA_USER: "adminer"
+    #  PMA_PASSWORD: "Isanum64!"
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      - ma-stack
+volumes:
+  db_data1: {}
+
+networks:
+  ma-stack: {}
