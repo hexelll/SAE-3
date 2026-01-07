@@ -5,6 +5,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
 
-include 'admin.php';
+include '../utils/admin.php';
 
 echo Admin::hashMdp($_REQUEST["mdp"]);
