@@ -6,7 +6,7 @@ services:
       - "80:80"
     volumes:
       - ../src/:/var/www/
-      - configs/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./configs/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - db
     networks:
