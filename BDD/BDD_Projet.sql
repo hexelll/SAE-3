@@ -1,8 +1,6 @@
 -- SQL: simple blog schema + sample queries (PostgreSQL-compatible)
 
 
-
-CREATE DATABASE bdfablab;
 USE bdfablab;
 
 CREATE TABLE Materiel (
